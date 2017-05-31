@@ -11,6 +11,8 @@ import android.view.View;
  * 关于我的页面的Activity版
  *
  * 现在 修改一些内容
+ *
+ *这一行的内容是在github上写的
  */
 public class AboutMeActivity extends ToolBarBaseActivity {
 
