@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.Toolbar
+        xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+        toolbar:theme="@style/Theme.ToolBar.Base"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_blue_deep"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar" />
+
+    <com.olife.o_life.view.PullToRefreshView
+        android:id="@+id/main_pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000" >
+
+        <ScrollView
+            android:id="@+id/scrollView_MainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:id="@+id/content_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <com.olife.o_life.adapter.MyViewPager
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/viewPager_MainActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:rollviewpager_play_delay="1000">
+                </com.olife.o_life.adapter.MyViewPager>
+
+                <LinearLayout
+                    android:id="@+id/layout_strips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <com.olife.o_life.view.ReGoddsListView
+                    android:id="@+id/listView_MainActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:listSelector="@drawable/re_goods_listview_background"  >
+                </com.olife.o_life.view.ReGoddsListView>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </com.olife.o_life.view.PullToRefreshView>
+
+</LinearLayout>

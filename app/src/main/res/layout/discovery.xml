@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--此为TooLBar的内容 这里暂时显示-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textBlueDeep"
+        xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+        toolbar:theme="@style/Theme.ToolBar.Base"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+            <com.amap.api.maps2d.MapView
+
+                android:id="@+id/map"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="270dp"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/dodgerblue" />
+
+        <include layout="@layout/discovery_viewpager"/>
+
+    </LinearLayout>
+</LinearLayout>

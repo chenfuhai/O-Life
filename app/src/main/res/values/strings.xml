@@ -1,0 +1,165 @@
+<resources>
+    <string name="app_name">O-Life</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+    <string name="login_login">登录</string>
+    <string name="login_register">注册</string>
+    <string name="login_forgetpwd">忘记密码?</string>
+    <string name="login_account">账号:</string>
+    <string name="login_account_hint">用户名/注册邮箱/手机号</string>
+    <string name="login_pwd">密码:</string>
+    <string name="login_pwd_hint">密码</string>
+    <string name="userinfo_icon_hint">头像</string>
+    <string name="userinfo_name_hint">用户名</string>
+    <string name="userinfo_name_test">吾谁与归</string>
+    <string name="userinfo_name_none">用户名</string>
+    <string name="userinfo_sex_hint">性别</string>
+    <string name="userinfo_sex_hint_man">男</string>
+    <string name="userinfo_sex_hint_women">女</string>
+    <string name="userinfo_birthday_hint">生日</string>
+    <string name="userinfo_age_none">设置</string>
+    <string name="userinfo_account_hint">账号绑定</string>
+    <string name="userinfo_phone_hint">手机</string>
+    <string name="userinfo_phone_none">点击绑定</string>
+    <string name="userinfo_email_hint">邮箱</string>
+    <string name="userinfo_email_test">1169555653@qq.com</string>
+    <string name="userinfo_email_none">点击绑定</string>
+    <string name="userinfo_security_hint">安全设置</string>
+    <string name="userinfo_pwd_hint">登录密码</string>
+    <string name="userinfo_pwd_change">点击修改</string>
+
+
+    <!--注册-->
+    <string name="register_register_tv1">登录</string>
+    <string name="register_et_phoneNum">请输入手机号码</string>
+    <string name="register_et_idCode">验证码</string>
+    <string name="register_btn_idCode">验证</string>
+    <string name="register_tv">阅读并同意《用户服务协定及隐私条款》</string>
+    <string name="register_btn_reg">注册</string>
+
+    <!--设置-->
+    <string name="setup_personal">设置</string>
+    <string name="setup_logoff">退出登录</string>
+    <string name="setup_clear">清除缓存</string>
+    <string name="setup_pushNotifications">推送通知</string>
+    <string name="setup_aboutUs">关于我们</string>
+    <string name="setup_update">检查更新</string>
+    <string name="setup_feedback">意见反馈</string>
+
+    <!--登录-->
+    <string name="loginsms_btn">登录</string>
+    <string name="loginsms_get">验证</string>
+    <string name="loginsms_problem">登录遇到问题？</string>
+
+    <!--推荐物品-->
+    <string name="recommend_tv">推荐物品</string>
+    <string name="re_air_show">污染物</string>
+    <string name="re_goods_search">请输入物品名称</string>
+
+    <!--交流分享-->
+    <string name="map_tv">交流分享</string>
+    <string name="map_tv_info">详情</string>
+    <string name="map_tv_discuss">评论</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title">演示</string>
+
+
+    <string name="testOnekey">
+        您的周围环境中主要污染物为：苯 等级：危险 \n\n
+        不良后果：短时间内吸入高浓度苯蒸汽可发生\n
+        急性苯中毒，出现兴奋或酒醉感，伴有黏膜刺\n
+        激症状。轻则头晕、头痛、恶心、呕吐、步态\n
+        不稳；重则昏迷、抽搐及循环衰竭直至死亡；
+        短期内吸入较高浓度苯后可发生亚急性苯中毒，出现头昏、头痛、乏力、失眠、月经紊乱等症状，并可发生再生障碍性贫血、急性白血病，
+        表现为迅速发展的贫血、出血、感染等。\n
+        \n
+        我们为您提供建议：\n
+        1.活性炭
+        简便，廉价，物理吸附，不易造成二次污染，且其本身对人体无害。\n
+        2.绿色植物的吸附
+        吊兰、常春藤等绿色植物可吸收室内一部分的低浓度苯系物。\n
+
+    </string>
+
+    <string name="backMessage"> \t\t非常感谢您对我们的支持!
+	    \n \t\t在此，我们对因应用设计不周而对您带来的不便向您致以歉意，
+        请您将您的意见或建议以及发现的问题填入下列编辑框中，并单击提交按钮。
+        您也可以与我们的维护团队(Email：1169555653@qq.com)取得联系。
+        \n\t\t我们会第一时间处理您的反馈</string>
+
+    <string name="O_Lifeinfo">\t\tO-Life 是一款基于LBS地图服务，使得用户之间可以互相分享数据，及时获取周边真实空气数据，并融合了并行多路传输技术的新型空气检测产品。
+    \n
+    </string>
+</resources>

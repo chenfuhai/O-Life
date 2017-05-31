@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--declare是R.styleable里面的标示 取出数据的时候要用到 最好写成跟view同名 这样 layout里面会识别的到写的时候回方便一点-->
+    <!--在使用layout的时候要添加 xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <declare-styleable name="PointView">
+
+        <!--等待圈点的大小-->
+        <attr name="waiting_strokewidth" format="dimension|reference"/>
+        <!--等待圈的个数-->
+        <attr name="waiting_pointcount" format="integer"/>
+        <!--等待圈颜色-->、
+        <attr name="waiting_pointcolor" format="color|reference"/>
+        <!--分数字体的颜色-->
+        <attr name="score_fontcolor" format="color|reference"/>
+        <!--最大的分数-->
+        <attr name="score_max" format="integer"/>
+        <!--分数字体的大小-->
+        <attr name="score_size" format="dimension|reference"/>
+        <!--分数单位 分 的字体颜色-->
+        <attr name="unit_fontcolor" format="color|reference"/>
+        <!--分数单位 分 的默认文字-->
+        <attr name="unit_text" format="string|reference"/>
+        <!--提示文字的颜色-->
+        <attr name="tip_fontcolor" format="color|reference"/>
+        <!--未开始之前的提示文字-->
+        <attr name="tip_before" format="string|reference"/>
+        <!--开始中的提示文字-->
+        <attr name="tip_doing" format="string|reference"/>
+        <!--结束后的提示文字-->
+        <attr name="tip_done" format="string|reference"/>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="PointViewFull">
+
+        <!--等待圈点的大小-->
+        <attr name="waiting_strokewidth_full" format="dimension|reference"/>
+        <!--等待圈的个数-->
+        <attr name="waiting_pointcount_full" format="integer"/>
+        <!--等待圈颜色-->、
+        <attr name="waiting_pointcolor_full" format="color|reference"/>
+        <!--标题文字颜色-->
+        <attr name="title_font_color_full" format="color|reference"/>
+        <!--标题默认文字-->
+        <attr name="title_full" format="string|reference"/>
+
+        <!--分数字体的颜色-->
+        <attr name="score_fontcolor_full" format="color|reference"/>
+        <!--最大的分数-->
+        <attr name="score_max_full" format="integer"/>
+        <!--分数字体的大小-->
+        <attr name="score_size_full" format="dimension|reference"/>
+        <!--分数单位 分 的字体颜色-->
+        <attr name="unit_fontcolor_full" format="color|reference"/>
+        <!--分数单位 分 的默认文字-->
+        <attr name="unit_text_full" format="string|reference"/>
+        <!--提示文字的颜色-->
+        <attr name="tip_fontcolor_full" format="color|reference"/>
+        <!--未开始之前的提示文字-->
+        <attr name="tip_before_full" format="string|reference"/>
+        <!--开始中的提示文字-->
+        <attr name="tip_doing_full" format="string|reference"/>
+        <!--结束后的提示文字-->
+        <attr name="tip_done_full" format="string|reference"/>
+
+
+    </declare-styleable>
+
+
+
+
+
+
+
+</resources>

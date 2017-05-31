@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_index"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        
+    </FrameLayout>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/divider"
+    />
+    <!--底部的导航栏使用radiobutton 定义样式-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/bg_gray_white"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/indexNavigationbar"
+            android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btnIndexOnekey"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/index_navigationbar_onekey"
+                android:gravity="center"
+                android:text="检测"
+                android:textColor="@drawable/index_navigationbar_textcolor"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/btnIndexDiscovery"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/index_navigationbar_discovery"
+                android:gravity="center"
+                android:text="周边"
+                android:textColor="@drawable/index_navigationbar_textcolor"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/btnIndexGoods"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/index_navigationbar_goods"
+                android:gravity="center"
+                android:text="推荐"
+                android:textColor="@drawable/index_navigationbar_textcolor"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/btnIndexAboutme"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/index_navigationbar_aboutme"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@drawable/index_navigationbar_textcolor"
+                android:textSize="12sp" />
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+</LinearLayout>

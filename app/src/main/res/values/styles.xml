@@ -1,0 +1,72 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--系统加载之前界面白屏的解决办法 使用窗口背景色-->
+    <style name="Welcome" parent="ColorTranslucentTheme">
+        <item name="android:windowBackground">@drawable/welcome</item>
+    </style>
+
+    <style name="ImageTranslucentTheme" parent="AppTheme">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
+    </style>
+
+    <style name="ColorTranslucentTheme" parent="AppTheme">
+    </style>
+
+    <style name="register_btn">
+        <item name="android:textSize">22sp</item>
+        <item name="android:background">#1e90ff</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="register_tv">
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="select_pop_amin" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/select_pic_pop_in</item>
+        <item name="android:windowExitAnimation">@anim/select_pic_pop_out</item>
+
+    </style>
+
+    <!--toolbar的菜单文字颜色属性-->
+    <style name="Theme.ToolBar.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionMenuTextColor">#fff</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="re_goods_tv1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:color">#ff0f0f0f</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="re_goods_tv2">
+        <item name="android:textSize">18sp</item>
+        <item name="android:color">#a52a2a</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="Transparent_Dialog">
+        <item name="android:windowFrame">@null</item><!--有无边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--是否半透明-->
+        <item name="android:windowNoTitle">true</item><!--是否显示title-->
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item><!--设置dialog的背景-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item><!--背景是否模糊显示-->
+    </style>
+
+
+
+</resources>
