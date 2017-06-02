@@ -22,6 +22,7 @@ import java.lang.reflect.Field;
 public class OlifeObject {
 
     protected void save(OlifeSaveLinstener<?> saveLinstener ){
+        //不忽略空值得属性全部转化为JSON
         Gson gson = new GsonBuilder().serializeNulls().create();
 
         System.out.println(gson.toJson(this));
