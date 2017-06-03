@@ -81,5 +81,7 @@ dependencies {
     //下拉上拉的list
     compile 'com.github.jdsjlzx:LRecyclerView:1.3.0'
 
+    compile 'com.mcxiaoke.volley:library:1.0.+'
+
 
 }
