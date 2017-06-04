@@ -23,11 +23,11 @@ import java.util.UUID;
  * 封装http请求
  */
 
-public class HttpUntils {
-    private static HttpUntils httpUntils;
+public class HttpUtils {
+    private static HttpUtils httpUtils;
 
     private Handler handler = new Handler();
-    private String result = "";
+//    private String result = "";
     private  int code;
     private int readTimeOut = 10 * 1000; // 读取超时
     private int connectTimeout = 10 * 1000; // 超时时间
@@ -39,20 +39,20 @@ public class HttpUntils {
         void onFialed(int connectCode);
     }
 
-    private HttpUntils(){
+    private HttpUtils(){
 
     }
 
-    public static HttpUntils getInstance(){
-        if (httpUntils==null){
-            synchronized (HttpUntils.class){
-                if (httpUntils == null){
-                    httpUntils = new HttpUntils();
+    public static HttpUtils getInstance(){
+        if (httpUtils==null){
+            synchronized (HttpUtils.class){
+                if (httpUtils == null){
+                    httpUtils = new HttpUtils();
                 }
             }
         }
 
-        return httpUntils;
+        return httpUtils;
     }
     /**
      *  上传JSON给服务器
@@ -65,11 +65,14 @@ public class HttpUntils {
                              SuccessListener successListener,
                              FailedListener failedListener){
 
+
         if (json==null || json.equals("")){
             failedListener.onFialed(-1);
             Log.i("fuhai", "com.olife.test>>HttpUntils>>postwithJSON: 空json");
+
             return;
         }
+
         uploadJson(RequestURL,json,successListener,failedListener);
 
     }
@@ -111,14 +114,14 @@ public class HttpUntils {
 
         final String CONTENT_TYPE = "application/json"; // 内容类型
         final String CHARSET = "utf-8";
-
+       final StringBuffer result = new StringBuffer();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     URL url = new URL(RequestURL);
-                    HttpURLConnection conn = (HttpURLConnection) url.getContent();
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
                     conn.setUseCaches(false);
@@ -134,6 +137,7 @@ public class HttpUntils {
                     DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
                     dos.write(json.getBytes());
                     dos.flush();
+                    dos.close();
 
                     code = conn.getResponseCode();
                     if (code == 200){
@@ -141,12 +145,12 @@ public class HttpUntils {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                         String lineString;
                         while ((lineString=bufferedReader.readLine())!=null){
-                            result+=lineString;
+                            result.append(lineString);
                         }
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                successListener.onSuccessResponse(result);
+                                successListener.onSuccessResponse(result.toString());
                             }
                         });
                     }else{
@@ -173,7 +177,7 @@ public class HttpUntils {
         final String BOUNDARY =UUID.randomUUID().toString();
         final String CONTENT_TYPE = "multipart/form-data"; // 内容类型
         final String CHARSET = "utf-8";
-
+        final StringBuffer result = new StringBuffer();
         if (file == null || !file.exists()){
             Log.i("fuhai", "com.olife.test>>HttpUntils>>uploadFile: 文件为空或者不存在");
             return;
@@ -184,7 +188,7 @@ public class HttpUntils {
             public void run() {
                 try {
                     URL url = new URL(requestUrl);
-                    HttpURLConnection conn = (HttpURLConnection) url.getContent();
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
                     conn.setUseCaches(false);
@@ -244,18 +248,21 @@ public class HttpUntils {
                     dos.write(end_data);
 
                     dos.flush();
+                    dos.close();
+
+
                     code = conn.getResponseCode();
                     if (code == 200){
                         //成功连接 接收
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                         String lineString;
                         while ((lineString=bufferedReader.readLine())!=null){
-                            result+=lineString;
+                            result.append(lineString);
                         }
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                successListener.onSuccessResponse(result);
+                                successListener.onSuccessResponse(result.toString());
                             }
                         });
                     }else{
