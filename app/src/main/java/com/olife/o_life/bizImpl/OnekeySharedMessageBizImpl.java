@@ -95,7 +95,29 @@ public class OnekeySharedMessageBizImpl implements OnekeySharedMessageBiz {
 //                }
 //            }
 //        });
+        Query query = new Query();
+        ArrayList<String[]> arrayList = new ArrayList<>();
+        arrayList.add(new String[]{"lat",result.getMaxLat()+""});
+        arrayList.add(new String[]{"lat",result.getMinLat()+""});
+        query.setWhereGreaterThanOrEqualTo(arrayList);
+        ArrayList<String[]> arrayList2 = new ArrayList<>();
+        arrayList2.add(new String[]{"lng",result.getMaxLng()+""});
+        arrayList2.add(new String[]{"lng",result.getMinLng()+""});
+        query.setWhereLessThanOrEqualTo(arrayList2);
 
+        HttpUtils.getInstance().postwithJSON(NetConfig.findOthersSharedByLatLngAction,
+                GsonGetter.getInstance().getGson().toJson(query), new HttpUtils.SuccessListener() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        ArrayList<OnekeySharedMessage> list = GsonGetter.getInstance().getGson().fromJson(result,ArrayList.class);
+                        lisenter.onSuccess(list);
+                    }
+                }, new HttpUtils.FailedListener() {
+                    @Override
+                    public void onFialed(int connectCode) {
+                        lisenter.onFailed(connectCode);
+                    }
+                });
 
     }
 

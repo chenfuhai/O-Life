@@ -7,10 +7,76 @@ import cn.bmob.v3.BmobUser;
  * Created by chenfuhai on 2016/10/13 0013.
  */
 
-public class User extends BmobUser {
-    private String imgUrl;
-    private Boolean sex;//性别 t为男 f为女
-    private String brithday;
+public class User {
+    private int id;
+    private String username;
+    private String password;
+    private String age;
+    private String phone;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneVe() {
+        return phoneVe;
+    }
+
+    public void setPhoneVe(String phoneVe) {
+        this.phoneVe = phoneVe;
+    }
+
+    public String getEmailVe() {
+        return emailVe;
+    }
+
+    public void setEmailVe(String emailVe) {
+        this.emailVe = emailVe;
+    }
 
     public String getImgUrl() {
         return imgUrl;
@@ -20,15 +86,11 @@ public class User extends BmobUser {
         this.imgUrl = imgUrl;
     }
 
-    /**
-     * 真 为男 false 为女
-     * @return
-     */
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -39,4 +101,13 @@ public class User extends BmobUser {
     public void setBrithday(String brithday) {
         this.brithday = brithday;
     }
+
+    private String email;
+    private String phoneVe;
+    private String emailVe;
+    private String imgUrl;
+    private String sex;//性别 t为男 f为女
+    private String brithday;
+
+
 }

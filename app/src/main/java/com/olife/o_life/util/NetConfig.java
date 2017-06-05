@@ -26,6 +26,11 @@ public class NetConfig {
 	public static String deleteDiscussionAction = "";
 	public static String findOnkeySharedByUserIdAction="";
 	public static String shareUserResultAction = "";
+	public static String findOthersSharedByLatLngAction="";
+	public static String UploadUserImgAction="";
+	public static String UpdateUserAction="";
+
+	public static String ChangeUserPwdAction="";
 	//--------------------TableName-----------------
 
 	public static String UserTableName="ouser";

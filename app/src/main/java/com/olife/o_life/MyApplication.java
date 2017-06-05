@@ -1,6 +1,7 @@
 package com.olife.o_life;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.amap.api.location.AMapLocationClient;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -16,10 +17,12 @@ import cn.bmob.v3.update.BmobUpdateAgent;
  */
 
 public class MyApplication extends Application {
+    private static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
 
+        context = getApplicationContext();
         SDcardTools.initialize(getApplicationContext());
         Bmob.initialize(getApplicationContext(), "3cdd8038837f44e97d8fdd566184b979");
 
@@ -32,5 +35,8 @@ public class MyApplication extends Application {
 
         AMapLocationClient.setApiKey("6524a0aa375b37ae3320db34479ebe6b");
 
+    }
+    public static Context getContext(){
+        return context;
     }
 }

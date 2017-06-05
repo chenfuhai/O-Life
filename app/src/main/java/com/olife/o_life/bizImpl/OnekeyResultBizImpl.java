@@ -76,7 +76,7 @@ public class OnekeyResultBizImpl implements OnekeyResultBiz {
 //        });
 
         Query query = new Query();
-        query.setWhereEqualTo("userId");
+        query.setWhereEqualTo(new String[]{"userId",userId});
         query.setLimit(count);
         query.setSkip(skip);
         query.setOrder("-id");
@@ -125,7 +125,7 @@ public class OnekeyResultBizImpl implements OnekeyResultBiz {
         Query query = new Query();
         query.setOrder("-id");
         query.setLimit(1);
-        query.setWhereEqualTo("userId");
+        query.setWhereEqualTo(new String[]{"userId",userId});
 
         HttpUtils.getInstance().postwithJSON(NetConfig.findLastOnkeyResultByUserIdAction,
                 GsonGetter.getInstance().getGson().toJson(query),
