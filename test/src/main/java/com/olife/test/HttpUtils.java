@@ -155,7 +155,13 @@ public class HttpUtils {
                         });
                     }else{
                         Log.i("fuhai", "com.olife.test>>HttpUntils>>run: 失败"+code);
-                        failedListener.onFialed(code);
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                failedListener.onFialed(code);
+                            }
+                        });
+
 
                     }
                     conn.disconnect();

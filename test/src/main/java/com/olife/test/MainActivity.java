@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView tv = (TextView) findViewById(R.id.text);
 
         String JSON = "{'abc6':'123','abc5':'123','abc4':'123','abc3':'123','abc2':'123','abc1':'123'}";
-        Toast.makeText(MainActivity.this, "1231", Toast.LENGTH_SHORT).show();
+
 
         head = (ImageView) findViewById(R.id.imageView);
         head.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +46,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        Query query = new Query();
+        query.setTableName("ouser");
+        query.setLimit(100);
+        query.setOrder("-id");
+        query.setSkip(10);
+        query.setWhereEqualTo("id");
 
+        HttpUtils.getInstance().postwithJSON(NetConfig.TestAction, gson.toJson(query),
+                new HttpUtils.SuccessListener() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        tv.setText(result);
+                    }
+                }, new HttpUtils.FailedListener() {
+                    @Override
+                    public void onFialed(int connectCode) {
+                        tv.setText(connectCode+"");
+                    }
+                });
     }
 
 
