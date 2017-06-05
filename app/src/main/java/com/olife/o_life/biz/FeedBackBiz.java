@@ -29,7 +29,7 @@ public interface FeedBackBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int code);
     }
 
     interface FindFeedbacksLisenter {
@@ -47,7 +47,7 @@ public interface FeedBackBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int code);
     }
 
 

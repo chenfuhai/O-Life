@@ -28,7 +28,7 @@ public interface OnekeySharedDiscussionBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
     interface FindDiscussionsLisenter {
         /**
@@ -45,7 +45,7 @@ public interface OnekeySharedDiscussionBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
     /**
      * 发表评论

@@ -25,7 +25,7 @@ public interface GoodsBiz {
          * 失败时做的事情
          * @param e
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
     void FindAllGoods(int limit, int skit, FindGoodsListener listener);
 }

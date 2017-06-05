@@ -27,7 +27,7 @@ public interface OnekeyResultBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
     interface FindDoingLisenter {
         /**
@@ -44,7 +44,7 @@ public interface OnekeyResultBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
 
     interface FindLastDoingLisenter {
@@ -62,7 +62,7 @@ public interface OnekeyResultBiz {
         /**
          * 失败的时候要做的事情
          */
-        void onFailed(BmobException e);
+        void onFailed(int e);
     }
     /**
      * 保存用户的检测记录
