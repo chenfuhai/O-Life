@@ -71,7 +71,7 @@ public class DiscoveryDiscussAdapter extends RecyclerView.Adapter<DiscoveryDiscu
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.name.setText(datas.get(position).getUsername());
         holder.content.setText(datas.get(position).getMessage());
-        holder.time.setText(datas.get(position).getCreatedAt());
+        holder.time.setText(datas.get(position).getTime());
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -7,9 +7,19 @@ import cn.bmob.v3.BmobObject;
  * Created by chenfuhai on 2016/12/16 0016.
  */
 
-public class OnekeySharedMessage extends BmobObject{
+public class OnekeySharedMessage {
 
+    private int id;
     private Integer  resultMark;//结果总分数
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private Integer ben;//苯详细评分
     private Integer  pm2_5;//PM2.5详细评分
     private String  suggest;//科学建议

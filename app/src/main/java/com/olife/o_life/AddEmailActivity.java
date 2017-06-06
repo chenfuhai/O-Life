@@ -3,8 +3,8 @@ package com.olife.o_life;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
@@ -13,10 +13,7 @@ import android.widget.Toast;
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
+import com.olife.o_life.util.UserUtils;
 
 public class AddEmailActivity extends ToolBarBaseActivity {
 
@@ -33,7 +30,7 @@ public class AddEmailActivity extends ToolBarBaseActivity {
             public void onClick(View view) {
                 String email = etemail.getEditableText().toString().trim();
                 User user = new User();
-                user.setObjectId(BmobUser.getCurrentUser(User.class).getObjectId());
+                user.setId(UserUtils.currentUser().getId());
                 user.setEmail(email);
                 new UserBizImpl().updateUser(user, new UserBiz.UserDoingLisenter() {
                     @Override
@@ -48,8 +45,8 @@ public class AddEmailActivity extends ToolBarBaseActivity {
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(), e);
+                    public void onFailed(int e) {
+                        //BmobError.showErrorMessage(getApplicationContext(), e);
                     }
                 });
             }

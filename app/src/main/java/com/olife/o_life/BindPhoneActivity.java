@@ -13,14 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 
 public class BindPhoneActivity extends ToolBarBaseActivity {
@@ -76,7 +73,7 @@ public class BindPhoneActivity extends ToolBarBaseActivity {
                 } else {
                     User user = BmobUser.getCurrentUser(User.class);
                     //如果当前的用户已经有保存了手机号并且与现在将要绑定的手机号相同 那么不要绑定
-                    if (user.getMobilePhoneNumber() != null && user.getMobilePhoneNumber().equals(phone)) {
+                    if (user.getPhone() != null && user.getPhone().equals(phone)) {
                         Toast.makeText(BindPhoneActivity.this, "手机号与原手机号一致，无需绑定", Toast.LENGTH_SHORT).show();
                     } else {
                         new UserBizImpl().verifySmsCode(phone, code, new UserBiz.UserDoingLisenter() {
@@ -92,8 +89,8 @@ public class BindPhoneActivity extends ToolBarBaseActivity {
                             }
 
                             @Override
-                            public void onFailed(BmobException e) {
-                                BmobError.showErrorMessage(getApplicationContext(), e);
+                            public void onFailed(int e) {
+                                //BmobError.showErrorMessage(getApplicationContext(), e);
                             }
                         });
                     }
@@ -124,8 +121,8 @@ public class BindPhoneActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                        public void onFailed(int e) {
+                            //BmobError.showErrorMessage(getApplicationContext(), e);
                             btnGetCode.setEnabled(true);
                         }
                     });

@@ -14,6 +14,14 @@ public class User {
     private String age;
     private String phone;
 
+    private String email;
+    private String phoneVe;
+    private String emailVe;
+    private String imgUrl;
+    private String sex;//性别 t为男 f为女
+    private String brithday;
+
+
     public int getId() {
         return id;
     }
@@ -102,12 +110,6 @@ public class User {
         this.brithday = brithday;
     }
 
-    private String email;
-    private String phoneVe;
-    private String emailVe;
-    private String imgUrl;
-    private String sex;//性别 t为男 f为女
-    private String brithday;
 
 
 }

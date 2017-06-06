@@ -7,10 +7,19 @@ import cn.bmob.v3.datatype.BmobFile;
  * Created by wuguofei on 2016/12/26.
  */
 
-public class Goods extends BmobObject {
-    private BmobFile icon;
+public class Goods {
+    private int id;
+    private String iconurl;
     private String name;
     private String desc;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -28,11 +37,11 @@ public class Goods extends BmobObject {
         this.desc = desc;
     }
 
-    public BmobFile getIcon() {
-        return icon;
+    public String getIconUrl() {
+        return iconurl;
     }
 
-    public void setIcon(BmobFile icon) {
-        this.icon = icon;
+    public void setIconUrl(String iconurl) {
+        this.iconurl = iconurl;
     }
 }

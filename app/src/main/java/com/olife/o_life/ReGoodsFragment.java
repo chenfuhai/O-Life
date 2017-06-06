@@ -103,7 +103,7 @@ public class ReGoodsFragment extends Fragment implements PullToRefreshView.OnHea
             }
 
             @Override
-            public void onFailed(BmobException e) {
+            public void onFailed(int e) {
             }
         });
     }
@@ -161,7 +161,7 @@ public class ReGoodsFragment extends Fragment implements PullToRefreshView.OnHea
             }
 
             @Override
-            public void onFailed(BmobException e) {
+            public void onFailed(int e) {
             }
         });
     }

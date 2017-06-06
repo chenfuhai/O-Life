@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.olife.o_life.util.BmobError;
-
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
@@ -104,7 +102,7 @@ public class ForgetPassByPhoneActivity extends ToolBarBaseActivity {
 
 
                             } else {
-                                BmobError.showErrorMessage(getApplicationContext(), e);
+                                //BmobError.showErrorMessage(getApplicationContext(), e);
                                 btnGetCode.setEnabled(true);
                             }
                         }

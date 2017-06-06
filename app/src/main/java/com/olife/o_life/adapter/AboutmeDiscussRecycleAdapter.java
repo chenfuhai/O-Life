@@ -105,7 +105,7 @@ public class AboutmeDiscussRecycleAdapter extends RecyclerView.Adapter<AboutmeDi
 
         holder.tvContent.setText(sharedDisc.getMessage());
         holder.tvName.setText(sharedDisc.getUsername());
-        holder.tvTime.setText(sharedDisc.getUpdatedAt());
+        holder.tvTime.setText(sharedDisc.getTime());
         boolean sex = sharedDisc.getUsersex().booleanValue();
         if (sex) {
             holder.ivSex.setImageResource(R.drawable.sex_male);

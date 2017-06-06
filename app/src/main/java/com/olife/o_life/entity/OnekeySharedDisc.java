@@ -7,7 +7,7 @@ import cn.bmob.v3.BmobObject;
  * Created by chenfuhai on 2016/12/16 0016.
  */
 
-public class OnekeySharedDisc extends BmobObject {
+public class OnekeySharedDisc  {
 
     private Integer id;
 
@@ -28,6 +28,15 @@ public class OnekeySharedDisc extends BmobObject {
 
     private String message;//评论内容
 
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public OnekeySharedDisc(String sharedMessageId, String userId) {
         this.sharedMessageId = sharedMessageId;

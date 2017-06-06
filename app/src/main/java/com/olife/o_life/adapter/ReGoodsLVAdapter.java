@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.olife.o_life.R;
 import com.olife.o_life.entity.Goods;
+import com.olife.o_life.util.NetConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +22,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import static android.os.Build.VERSION_CODES.N;
 import static com.olife.o_life.R.id.tv1_re_goods;
 
 
@@ -77,7 +79,7 @@ public class ReGoodsLVAdapter extends BaseAdapter {
                 @Override
                 public void run() {
                     //根据表中图片的url地址来得到图片（Bitmap类型）
-                    final Bitmap bitmap = getPicture(datas.get(i).getIcon().getFileUrl());
+                    final Bitmap bitmap = getPicture(NetConfig.PreImgUrl+datas.get(i).getIconUrl());
                     try {
                         Thread.sleep(200);
                     } catch (InterruptedException e) {

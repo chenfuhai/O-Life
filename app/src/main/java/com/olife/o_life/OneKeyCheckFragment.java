@@ -12,29 +12,27 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.olife.o_life.adapter.OneKeyRecyclerAdapter;
 import com.olife.o_life.adapter.OnekeyCheckViewPagerAdapter;
-import com.olife.o_life.biz.OnekeySharedMessageBiz;
 import com.olife.o_life.biz.OnekeyResultBiz;
-import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
+import com.olife.o_life.biz.OnekeySharedMessageBiz;
 import com.olife.o_life.bizImpl.OnekeyResultBizImpl;
-import com.olife.o_life.entity.OnekeyResultRecord;
+import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
 import com.olife.o_life.entity.OnekeyResultLocal;
+import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedMessage;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
 import com.olife.o_life.util.LocationUtils;
 import com.olife.o_life.util.StatusBarUtils;
+import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
 import com.olife.pointview.PointViewFull;
 
@@ -42,10 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
 
-import static android.R.id.list;
 import static cn.bmob.v3.Bmob.getApplicationContext;
 
 /**
@@ -97,7 +93,7 @@ public class OneKeyCheckFragment extends Fragment {
                 pointView.setCurrScore(59);
                 pointView.waitingStop();
 
-                final OnekeyResultRecord resultRecord = new OnekeyResultRecord(59, BmobUser.getCurrentUser(User.class).getObjectId());
+                final OnekeyResultRecord resultRecord = new OnekeyResultRecord(59, UserUtils.currentUser().getId()+"");
                 LocationUtils.getmLocationUtil(getApplicationContext()).startLocation(new LocationUtils.LocationDoingLisenter() {
                     @Override
                     public void onStart() {
@@ -135,8 +131,8 @@ public class OneKeyCheckFragment extends Fragment {
                             }
 
                             @Override
-                            public void onFailed(BmobException e) {
-                                BmobError.showErrorMessage(getApplicationContext(), e);
+                            public void onFailed(int e) {
+                               // BmobError.showErrorMessage(getApplicationContext(), e);
                             }
                         });
                     }
@@ -302,8 +298,8 @@ public class OneKeyCheckFragment extends Fragment {
                                         }
 
                                         @Override
-                                        public void onFailed(BmobException e) {
-                                            BmobError.showErrorMessage(getApplicationContext(), e);
+                                        public void onFailed(int e) {
+                                            //BmobError.showErrorMessage(getApplicationContext(), e);
                                         }
                                     });
                                 }
@@ -328,8 +324,8 @@ public class OneKeyCheckFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(), e);
+                    public void onFailed(int e) {
+                        //BmobError.showErrorMessage(getApplicationContext(), e);
                         loadingDialog.dismiss();
                     }
                 });

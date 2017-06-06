@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,13 +15,10 @@ import com.olife.o_life.biz.FeedBackBiz;
 import com.olife.o_life.bizImpl.FeedBackBizImpl;
 import com.olife.o_life.entity.Feedback;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
+import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
 
-import java.util.List;
-
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 public class FeedBackActivity extends ToolBarBaseActivity {
 
@@ -62,7 +58,7 @@ public class FeedBackActivity extends ToolBarBaseActivity {
                     dialog.show();
                     Feedback feedback = new Feedback( message);
                     if (BmobUser.getCurrentUser(User.class)!=null){
-                        feedback.setUserId(BmobUser.getCurrentUser(User.class).getObjectId());
+                        feedback.setUserId(UserUtils.currentUser().getId()+"");
                     }
                     if (!etQQ.getEditableText().toString().trim().isEmpty()){
                         feedback.setQQ(etQQ.getEditableText().toString().trim());
@@ -88,10 +84,10 @@ public class FeedBackActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
+                        public void onFailed(int e) {
                             dialog.dismiss();
                             btnComfirm.setEnabled(true);
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                           // BmobError.showErrorMessage(getApplicationContext(), e);
                         }
                     });
                 }

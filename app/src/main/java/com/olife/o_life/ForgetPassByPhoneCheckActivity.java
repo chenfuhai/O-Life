@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.olife.o_life.util.BmobError;
-
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
@@ -59,7 +57,7 @@ public class ForgetPassByPhoneCheckActivity extends ToolBarBaseActivity {
                                 Toast.makeText(ForgetPassByPhoneCheckActivity.this, "密码重置成功,请牢记您的密码", Toast.LENGTH_SHORT).show();
                                 finish();
                             }else{
-                                BmobError.showErrorMessage(getApplicationContext(),ex);
+                                //BmobError.showErrorMessage(getApplicationContext(),ex);
                             }
                         }
                     });

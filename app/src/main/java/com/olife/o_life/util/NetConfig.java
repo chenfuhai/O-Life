@@ -1,6 +1,6 @@
 package com.olife.o_life.util;
 /**
- * ÍøÂç·şÎñÆ÷IPÅäÖÃ
+ * ç½‘ç»œæœåŠ¡å™¨IPé…ç½®
  * @author chenfuhai
  *
  */
@@ -11,7 +11,9 @@ public class NetConfig {
 	public static String USERNAME="sa";
 	public static String PASSWORD="fdc159";
 	public static String HTTPPORT="8080";
+	public static String ProjectName = "olifeManager";
 
+	public static String PreImgUrl = IP+":"+HTTPPORT+"/"+ProjectName;
 	//--------------------ACTION-----------------------------
 	public static String TestAction = IP+":"+HTTPPORT+"/onmyoji/test.action";
 	public static String SaveFeedBackAction = "";
@@ -31,6 +33,8 @@ public class NetConfig {
 	public static String UpdateUserAction="";
 
 	public static String ChangeUserPwdAction="";
+	public static String UserLoginAction = "";
+	public static String UserSignUpAction = "";
 	//--------------------TableName-----------------
 
 	public static String UserTableName="ouser";

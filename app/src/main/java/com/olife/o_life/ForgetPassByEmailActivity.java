@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.olife.o_life.util.BmobError;
-
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
@@ -50,7 +48,7 @@ public class ForgetPassByEmailActivity extends ToolBarBaseActivity {
                                 tvMessage.setText("已向您的邮箱 "+tvEmail.getText().toString().trim()+"发送重置密码邮件\n请在网页端完成密码重置");
                             }else{
                                 btnComfirm.setEnabled(true);
-                                BmobError.showErrorMessage(getApplicationContext(),e);
+                                //BmobError.showErrorMessage(getApplicationContext(),e);
                             }
                         }
                     });

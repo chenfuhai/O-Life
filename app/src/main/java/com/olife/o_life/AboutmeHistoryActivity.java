@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,15 +20,12 @@ import com.olife.o_life.biz.OnekeyResultBiz;
 import com.olife.o_life.bizImpl.OnekeyResultBizImpl;
 import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
 import com.olife.o_life.util.NetworkUtils;
 
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 public class AboutmeHistoryActivity extends ToolBarBaseActivity {
 
@@ -92,7 +88,7 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
             //网络可用
             User user = BmobUser.getCurrentUser(User.class);
             if (user != null) {
-                onekeyResultBiz.findOnkeyResultByUserId(user.getObjectId(), REQUEST_COUNT, mCurrentCounter, new OnekeyResultBiz.FindDoingLisenter() {
+                onekeyResultBiz.findOnkeyResultByUserId(user.getId()+"", REQUEST_COUNT, mCurrentCounter, new OnekeyResultBiz.FindDoingLisenter() {
                     @Override
                     public void onStart() {
 
@@ -115,8 +111,8 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(), e);
+                    public void onFailed(int e) {
+                        //BmobError.showErrorMessage(getApplicationContext(), e);
                         RecyclerViewStateUtils.setFooterViewState(AboutmeHistoryActivity.this, mRecyclerView, REQUEST_COUNT,
                                 LoadingFooter.State.NetWorkError, new View.OnClickListener() {
                                     @Override

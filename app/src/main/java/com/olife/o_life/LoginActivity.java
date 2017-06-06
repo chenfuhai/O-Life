@@ -19,9 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.olife.o_life.util.BmobError;
-import com.olife.o_life.util.SDcardTools;
 import com.olife.o_life.entity.User;
+import com.olife.o_life.util.SDcardTools;
 import com.olife.o_life.view.WaitingDialog;
 
 import java.io.File;
@@ -119,7 +118,7 @@ public class LoginActivity extends ToolBarBaseActivity {
                     finish();
                 } else {
                     wait.dismiss();
-                    BmobError.showErrorMessage(getApplication(), e);
+                    //BmobError.showErrorMessage(getApplication(), e);
                     Log.i("fuhai", "done: login failed" + e.getMessage() + e.getErrorCode());
                 }
             }
@@ -142,7 +141,7 @@ public class LoginActivity extends ToolBarBaseActivity {
                     if (e == null) {
                     } else {
                         Log.i("fuhai", "done: dwheadFileFailed " + e.getMessage() + e.getErrorCode());
-                        BmobError.showErrorMessage(getApplicationContext(), e);
+                        //BmobError.showErrorMessage(getApplicationContext(), e);
                     }
 
 

@@ -9,8 +9,9 @@ import cn.bmob.v3.BmobObject;
  * Created by chenfuhai on 2016/12/16 0016.
  */
 
-public class OnekeyResultRecord extends BmobObject {
+public class OnekeyResultRecord {
 
+    private int id;
     private Integer resultMark;//结果总分数
     private Integer ben;//苯详细评分
     private Integer pm2_5;//PM2.5详细评分
@@ -25,6 +26,28 @@ public class OnekeyResultRecord extends BmobObject {
     private String  city;
     private String  street;
     private String  StreetNum;
+
+
+    private String userId;
+    private String driverId;//设备编号
+
+    private String  time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public Double getLng() {
         return lng;
@@ -81,9 +104,6 @@ public class OnekeyResultRecord extends BmobObject {
     public void setStreetNum(String streetNum) {
         StreetNum = streetNum;
     }
-
-    private String userId;
-    private String driverId;//设备编号
 
 
     public OnekeyResultRecord(Integer resultMark, String userId) {

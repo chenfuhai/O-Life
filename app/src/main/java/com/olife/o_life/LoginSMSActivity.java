@@ -17,9 +17,6 @@ import android.widget.Toast;
 
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
-import com.olife.o_life.util.BmobError;
-
-import cn.bmob.v3.exception.BmobException;
 
 
 /**
@@ -89,8 +86,8 @@ public class LoginSMSActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                        public void onFailed(int e) {
+                            //BmobError.showErrorMessage(getApplicationContext(), e);
                         }
                     });
                 }
@@ -118,8 +115,8 @@ public class LoginSMSActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                        public void onFailed(int e) {
+                           // BmobError.showErrorMessage(getApplicationContext(), e);
                             btnGetCode.setEnabled(true);
                         }
                     });

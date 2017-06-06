@@ -24,15 +24,14 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
 import com.olife.o_life.util.SDcardTools;
+import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
 import com.olife.o_life.view.SelectPicturePopupWindow;
 
 import java.io.File;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 /**
  * 用户详细信息页面
@@ -123,7 +122,7 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                     @Override
                     public void onDateSet(DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
                         User user = new User();
-                        user.setObjectId(BmobUser.getCurrentUser(User.class).getObjectId());
+                        user.setId(UserUtils.currentUser().getId());
                         user.setBrithday(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
                         userBiz.updateUser(user, new UserBiz.UserDoingLisenter() {
                             @Override
@@ -140,9 +139,9 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                             }
 
                             @Override
-                            public void onFailed(BmobException e) {
+                            public void onFailed(int e) {
                                 loadingDialog.dismiss();
-                                BmobError.showErrorMessage(getApplicationContext(), e);
+                               // BmobError.showErrorMessage(getApplicationContext(), e);
                             }
                         });
                     }
@@ -204,7 +203,7 @@ public class UserInfoActivity extends ToolBarBaseActivity {
         }
         if (cu.getSex() != null) {
             mSexGroup.setOnCheckedChangeListener(null);
-            if (cu.getSex()) {
+            if (cu.getSex().equals("true")) {
                 mSexman.setChecked(true);
 
             } else {
@@ -218,8 +217,8 @@ public class UserInfoActivity extends ToolBarBaseActivity {
             mUserBrithday.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textGray));
         }
 
-        if (cu.getMobilePhoneNumber() != null && !cu.getMobilePhoneNumber().isEmpty()) {
-            mUserPhone.setText(cu.getMobilePhoneNumber());
+        if (cu.getPhone() != null && !cu.getPhone().isEmpty()) {
+            mUserPhone.setText(cu.getPhone());
             mUserPhone.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textGray));
         }
 
@@ -271,9 +270,9 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
+                        public void onFailed(int e) {
                             loadingDialog.dismiss();
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                            //BmobError.showErrorMessage(getApplicationContext(), e);
                             mHead.setImageResource(R.drawable.test_icon);
                         }
                     });
@@ -328,10 +327,10 @@ public class UserInfoActivity extends ToolBarBaseActivity {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int i) {
             User user = new User();
-            user.setObjectId(BmobUser.getCurrentUser(User.class).getObjectId());
+            user.setId(UserUtils.currentUser().getId());
             switch (i) {
                 case R.id.userInfo_radio_sexMan:
-                    user.setSex(true);
+                    user.setSex("true");
 
                     userBiz.updateUser(user, new UserBiz.UserDoingLisenter() {
                         @Override
@@ -347,14 +346,14 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
+                        public void onFailed(int e) {
                             loadingDialog.dismiss();
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                            //BmobError.showErrorMessage(getApplicationContext(), e);
                         }
                     });
                     break;
                 case R.id.userInfo_radio_sexWomen:
-                    user.setSex(false);
+                    user.setSex("false");
                     userBiz.updateUser(user, new UserBiz.UserDoingLisenter() {
                         @Override
                         public void onStart() {
@@ -369,9 +368,9 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                         }
 
                         @Override
-                        public void onFailed(BmobException e) {
+                        public void onFailed(int e) {
                             loadingDialog.dismiss();
-                            BmobError.showErrorMessage(getApplicationContext(), e);
+                           // BmobError.showErrorMessage(getApplicationContext(), e);
                         }
                     });
                     break;

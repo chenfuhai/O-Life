@@ -129,8 +129,8 @@ public class AboutMeFragment extends Fragment {
             String userimgUrl = user.getImgUrl();
             String name = user.getUsername();
             tvname.setText(name);
-            if (user.getMobilePhoneNumber() != null && !user.getMobilePhoneNumber().isEmpty()) {
-                tvphone.setText(user.getMobilePhoneNumber());
+            if (user.getPhone() != null && !user.getPhone().isEmpty()) {
+                tvphone.setText(user.getPhone());
             } else if (user.getEmail() != null && !user.getEmail().isEmpty()) {
                 tvphone.setText(user.getEmail());
             } else {

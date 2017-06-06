@@ -3,8 +3,8 @@ package com.olife.o_life;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
@@ -12,9 +12,6 @@ import android.widget.Toast;
 
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
-import com.olife.o_life.util.BmobError;
-
-import cn.bmob.v3.exception.BmobException;
 
 public class ChangePwdActivity extends ToolBarBaseActivity {
 
@@ -48,8 +45,8 @@ public class ChangePwdActivity extends ToolBarBaseActivity {
                        }
 
                        @Override
-                       public void onFailed(BmobException e) {
-                            BmobError.showErrorMessage(getApplicationContext(),e);
+                       public void onFailed(int e) {
+                            //BmobError.showErrorMessage(getApplicationContext(),e);
                        }
                    });
                 }

@@ -7,8 +7,9 @@ import cn.bmob.v3.BmobObject;
  * Created by chenfuhai on 2016/12/26 0026.
  */
 
-public class Feedback extends BmobObject {
+public class Feedback  {
 
+    private int id;
     //用户的信息
     private String userId;
     private String userName;

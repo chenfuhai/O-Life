@@ -95,7 +95,7 @@ public class AboutmeHistoryRecycleAdapter extends RecyclerView.Adapter<AboutmeHi
         holder.tvMark.setText(resultRecord.getResultMark().toString());
         holder.tvInfo.setText("苯："+resultRecord.getBen()+"\tPM2.5"+resultRecord.getPm2_5()+"\t地理位置"
                 +resultRecord.getDistrict()+resultRecord.getStreet()+resultRecord.getStreetNum()
-                +"\t时间:"+resultRecord.getUpdatedAt());
+                +"\t时间:"+resultRecord.getTime());
     }
 
     @Override

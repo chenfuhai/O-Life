@@ -3,13 +3,11 @@ package com.olife.o_life;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -18,22 +16,17 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.util.RecyclerViewStateUtils;
 import com.github.jdsjlzx.view.LoadingFooter;
 import com.olife.o_life.adapter.AboutmeDiscussRecycleAdapter;
-import com.olife.o_life.adapter.AboutmeHistoryRecycleAdapter;
-import com.olife.o_life.biz.OnekeyResultBiz;
 import com.olife.o_life.biz.OnekeySharedDiscussionBiz;
-import com.olife.o_life.bizImpl.OnekeyResultBizImpl;
 import com.olife.o_life.bizImpl.OnekeySharedDiscussionBizImpl;
-import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedDisc;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
 import com.olife.o_life.util.NetworkUtils;
+import com.olife.o_life.util.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 public class AboutmeDiscussActivity extends ToolBarBaseActivity {
 
@@ -94,9 +87,10 @@ public class AboutmeDiscussActivity extends ToolBarBaseActivity {
     private void requestData() {
         if (NetworkUtils.isNetAvailable(getApplicationContext())) {
             //网络可用
-            User user = BmobUser.getCurrentUser(User.class);
+            //User user = BmobUser.getCurrentUser(User.class);
+            User user = UserUtils.currentUser();
             if (user != null) {
-                discussionBiz.findUserAllDiscussions(user.getObjectId(), REQUEST_COUNT, mCurrentCounter, new OnekeySharedDiscussionBiz.FindDiscussionsLisenter() {
+                discussionBiz.findUserAllDiscussions(user.getId()+"", REQUEST_COUNT, mCurrentCounter, new OnekeySharedDiscussionBiz.FindDiscussionsLisenter() {
                     @Override
                     public void onStart() {
 
@@ -118,8 +112,8 @@ public class AboutmeDiscussActivity extends ToolBarBaseActivity {
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(), e);
+                    public void onFailed(int e) {
+                        //BmobError.showErrorMessage(getApplicationContext(), e);
                         RecyclerViewStateUtils.setFooterViewState(AboutmeDiscussActivity.this, mRecyclerView, REQUEST_COUNT,
                                 LoadingFooter.State.NetWorkError, new View.OnClickListener() {
                                     @Override

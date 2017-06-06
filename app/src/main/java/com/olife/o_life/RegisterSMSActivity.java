@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.olife.o_life.util.BmobError;
 import com.olife.o_life.entity.User;
 
 import cn.bmob.v3.BmobSMS;
@@ -61,39 +60,39 @@ public class RegisterSMSActivity extends ToolBarBaseActivity {
         btnGetCode = (Button) findViewById(R.id.phoneNum_btnCode);
 
 
-        btnComfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        btnComfirm.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 
-                final String phone = tvPhone.getEditableText().toString().trim();
-                String code = tvCode.getEditableText().toString().trim();
-
-                boolean cPhone = phone.matches("1\\d{10}");
-                boolean cCode = code.matches("\\d{6}");
-
-                if (phone.isEmpty() || !cPhone) {
-                    Toast.makeText(RegisterSMSActivity.this, "请填写大陆地区11位数字手机号", Toast.LENGTH_SHORT).show();
-                } else if (code.isEmpty() || !cCode) {
-                    Toast.makeText(RegisterSMSActivity.this, "请填写6位数字验证码", Toast.LENGTH_SHORT).show();
-                } else {
-                    User user = new User();
-                    user.setUsername(phone);
-                    user.setPassword("123456");//默认密码
-                    user.setMobilePhoneNumber(phone);
-                    user.signOrLogin(code,new SaveListener<User>(){
-
-                        @Override
-                        public void done(User user, BmobException e) {
-                            if (user != null) {
-                                Toast.makeText(RegisterSMSActivity.this, "注册成功，欢迎加入"+user.getUsername(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(RegisterSMSActivity.this, "默认密码为123456 请及时修改", Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterSMSActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                BmobError.showErrorMessage(getApplication(), e);
-                            }
-                        }
-                    });
+//                final String phone = tvPhone.getEditableText().toString().trim();
+//                String code = tvCode.getEditableText().toString().trim();
+//
+//                boolean cPhone = phone.matches("1\\d{10}");
+//                boolean cCode = code.matches("\\d{6}");
+//
+//                if (phone.isEmpty() || !cPhone) {
+//                    Toast.makeText(RegisterSMSActivity.this, "请填写大陆地区11位数字手机号", Toast.LENGTH_SHORT).show();
+//                } else if (code.isEmpty() || !cCode) {
+//                    Toast.makeText(RegisterSMSActivity.this, "请填写6位数字验证码", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    User user = new User();
+//                    user.setUsername(phone);
+//                    user.setPassword("123456");//默认密码
+//                    user.setPhone(phone);
+//                    user.signOrLogin(code,new SaveListener<User>(){
+//
+//                        @Override
+//                        public void done(User user, BmobException e) {
+//                            if (user != null) {
+//                                Toast.makeText(RegisterSMSActivity.this, "注册成功，欢迎加入"+user.getUsername(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(RegisterSMSActivity.this, "默认密码为123456 请及时修改", Toast.LENGTH_SHORT).show();
+//                                finish();
+//                            } else {
+//                                Toast.makeText(RegisterSMSActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                //BmobError.showErrorMessage(getApplication(), e);
+//                            }
+//                        }
+//                    });
 //                      此方法返回空指针异常请不要再试
 //                    BmobUser.signOrLoginByMobilePhone(phone, code, new LogInListener<User>() {
 //
@@ -108,9 +107,9 @@ public class RegisterSMSActivity extends ToolBarBaseActivity {
 //                            }
 //                        }
 //                    });
-                }
-            }
-        });
+//                }
+//            }
+//        });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +129,7 @@ public class RegisterSMSActivity extends ToolBarBaseActivity {
 
 
                             } else {
-                                BmobError.showErrorMessage(getApplicationContext(), e);
+                                //BmobError.showErrorMessage(getApplicationContext(), e);
                                 btnGetCode.setEnabled(true);
                             }
                         }

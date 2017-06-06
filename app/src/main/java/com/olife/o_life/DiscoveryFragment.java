@@ -48,9 +48,8 @@ import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
 import com.olife.o_life.entity.OnekeySharedDisc;
 import com.olife.o_life.entity.OnekeySharedMessage;
 import com.olife.o_life.entity.User;
-import com.olife.o_life.util.BmobError;
-import com.olife.o_life.util.LocationUtils;
 import com.olife.o_life.util.StatusBarUtils;
+import com.olife.o_life.util.UserUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import java.util.ArrayList;
@@ -58,7 +57,6 @@ import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
 
 import static cn.bmob.v3.Bmob.getApplicationContext;
 
@@ -370,7 +368,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             }
 
             @Override
-            public void onFailed(BmobException e) {
+            public void onFailed(int e) {
 
             }
         });
@@ -490,8 +488,8 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             }
 
             @Override
-            public void onFailed(BmobException e) {
-                BmobError.showErrorMessage(getApplicationContext(),e);
+            public void onFailed(int e) {
+                //BmobError.showErrorMessage(getApplicationContext(),e);
             }
         });
     }
@@ -530,8 +528,8 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             @Override
             public boolean onMarkerClick(Marker arg0) {
                 OnekeySharedMessage message = (OnekeySharedMessage) arg0.getObject();
-                Log.e("7",message.getObjectId());
-                c = message.getObjectId();
+                Log.e("7",message.getId()+"");
+                c = message.getId()+"";
                 getdata();
                 tv_map_info.setText("地址：" + message.getProvince() + " "+message.getCity()+""+message.getDistrict()+""+message.getStreet()+""
                 +"\n"+"评分："+message.getResultMark()+"\n"+"建议："+message.getSuggest()+"");
@@ -578,9 +576,9 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
                 //设置messageId
                 discussion.setSharedMessageId(c);
                 //获得用户名
-                discussion.setUsername(BmobUser.getCurrentUser(User.class).getUsername());
+                discussion.setUsername(UserUtils.currentUser().getUsername());
                 //获得用户id
-                discussion.setUserId(BmobUser.getCurrentUser(User.class).getObjectId());
+                discussion.setUserId(UserUtils.currentUser().getId()+"");
                 discussion.setUsersex(true);
                 discussion.setUserImgUrl(BmobUser.getCurrentUser(User.class).getImgUrl());
 
@@ -597,8 +595,8 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(),e);
+                    public void onFailed(int e) {
+                       // BmobError.showErrorMessage(getApplicationContext(),e);
                     }
                 });
                 break;

@@ -1,7 +1,7 @@
 package com.olife.o_life;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -9,11 +9,8 @@ import android.widget.TextView;
 import com.olife.o_life.biz.OnekeySharedMessageBiz;
 import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
 import com.olife.o_life.entity.OnekeySharedMessage;
-import com.olife.o_life.util.BmobError;
 
 import java.util.List;
-
-import cn.bmob.v3.exception.BmobException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailed(BmobException e) {
-                        BmobError.showErrorMessage(getApplicationContext(),e);
+                    public void onFailed(int e) {
+                       // BmobError.showErrorMessage(getApplicationContext(),e);
                     }
                 });
 
