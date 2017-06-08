@@ -1,7 +1,5 @@
 package com.olife.o_life.entity;
 
-import cn.bmob.v3.BmobObject;
-
 /**
  * 反馈类 用户反馈的信息存在这里面
  * Created by chenfuhai on 2016/12/26 0026.

@@ -1,7 +1,5 @@
 package com.olife.o_life.bizImpl;
 
-import android.util.Log;
-
 import com.olife.o_life.biz.OnekeySharedDiscussionBiz;
 import com.olife.o_life.entity.OnekeySharedDisc;
 import com.olife.o_life.util.Delete;
@@ -11,22 +9,6 @@ import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import cn.bmob.v3.BmobBatch;
-import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.datatype.BatchResult;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListListener;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
-
-import static android.R.attr.id;
-import static com.loc.c.c;
-import static com.loc.c.e;
-import static com.loc.c.g;
 
 /**
  * 评论的业务实现类

@@ -1,7 +1,5 @@
 package com.olife.o_life.entity;
 
-import cn.bmob.v3.BmobUser;
-
 /**
  * 用户类
  * Created by chenfuhai on 2016/10/13 0013.
@@ -110,6 +108,20 @@ public class User {
         this.brithday = brithday;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", age='" + age + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneVe='" + phoneVe + '\'' +
+                ", emailVe='" + emailVe + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", sex='" + sex + '\'' +
+                ", brithday='" + brithday + '\'' +
+                '}';
+    }
 }

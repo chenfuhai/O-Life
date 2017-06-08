@@ -21,11 +21,10 @@ import com.olife.o_life.bizImpl.OnekeyResultBizImpl;
 import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.User;
 import com.olife.o_life.util.NetworkUtils;
+import com.olife.o_life.util.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bmob.v3.BmobUser;
 
 public class AboutmeHistoryActivity extends ToolBarBaseActivity {
 
@@ -86,7 +85,7 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
     private void requestData() {
         if (NetworkUtils.isNetAvailable(getApplicationContext())) {
             //网络可用
-            User user = BmobUser.getCurrentUser(User.class);
+            User user = UserUtils.currentUser();
             if (user != null) {
                 onekeyResultBiz.findOnkeyResultByUserId(user.getId()+"", REQUEST_COUNT, mCurrentCounter, new OnekeyResultBiz.FindDoingLisenter() {
                     @Override

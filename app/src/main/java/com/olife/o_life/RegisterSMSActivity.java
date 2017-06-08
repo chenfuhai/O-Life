@@ -15,13 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.olife.o_life.entity.User;
-
-import cn.bmob.v3.BmobSMS;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
-
 /**
  * 手机号注册的版本
  * Created by cuiliang on 2016/11/27.
@@ -114,29 +107,30 @@ public class RegisterSMSActivity extends ToolBarBaseActivity {
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String phone = tvPhone.getEditableText().toString().trim();
-                if (!phone.isEmpty()) {
-                    btnGetCode.setEnabled(false);
-
-                    BmobSMS.requestSMSCode(phone, "fuhai", new QueryListener<Integer>() {
-                        @Override
-                        public void done(Integer smsid, BmobException e) {
-                            if (e == null) {
-                                Toast.makeText(RegisterSMSActivity.this, "验证码已发送，请注意查收", Toast.LENGTH_LONG).show();
-                                mSmsId = smsid;
-                                handler.sendEmptyMessage(0);
-
-
-                            } else {
-                                //BmobError.showErrorMessage(getApplicationContext(), e);
-                                btnGetCode.setEnabled(true);
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(RegisterSMSActivity.this, "请填写手机号", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(RegisterSMSActivity.this, "暂不支持敬请期待", Toast.LENGTH_SHORT).show();
+//
+//                String phone = tvPhone.getEditableText().toString().trim();
+//                if (!phone.isEmpty()) {
+//                    btnGetCode.setEnabled(false);
+//
+//                    BmobSMS.requestSMSCode(phone, "fuhai", new QueryListener<Integer>() {
+//                        @Override
+//                        public void done(Integer smsid, BmobException e) {
+//                            if (e == null) {
+//                                Toast.makeText(RegisterSMSActivity.this, "验证码已发送，请注意查收", Toast.LENGTH_LONG).show();
+//                                mSmsId = smsid;
+//                                handler.sendEmptyMessage(0);
+//
+//
+//                            } else {
+//                                //BmobError.showErrorMessage(getApplicationContext(), e);
+//                                btnGetCode.setEnabled(true);
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    Toast.makeText(RegisterSMSActivity.this, "请填写手机号", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

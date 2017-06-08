@@ -1,8 +1,6 @@
 package com.olife.o_life.bizImpl;
 
-import com.amap.api.maps.model.animation.AlphaAnimation;
 import com.olife.o_life.biz.OnekeySharedMessageBiz;
-import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedMessage;
 import com.olife.o_life.util.GsonGetter;
 import com.olife.o_life.util.HttpUtils;
@@ -11,15 +9,6 @@ import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
-
-import static com.amap.api.mapcore2d.p.c;
-import static com.amap.api.mapcore2d.p.l;
 
 /**
  * Created by chenfuhai on 2016/12/16 0016.

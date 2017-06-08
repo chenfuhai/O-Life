@@ -28,10 +28,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
-import static cn.bmob.v3.Bmob.getApplicationContext;
-
 /**
  * 推荐商品的fragment版本
  * Created by wuguofei on 2016/12/6.
@@ -76,7 +72,7 @@ public class ReGoodsFragment extends Fragment implements PullToRefreshView.OnHea
     public void onResume() {
         super.onResume();
         StatusBarUtils.setWindowStatusBarColor(getActivity(),
-                ContextCompat.getColor(getApplicationContext(), R.color.bg_blue_deep), false);
+                ContextCompat.getColor(MyApplication.getContext(), R.color.bg_blue_deep), false);
     }
 
     /**

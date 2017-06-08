@@ -13,8 +13,7 @@ import android.widget.Toast;
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
 import com.olife.o_life.entity.User;
-
-import cn.bmob.v3.BmobUser;
+import com.olife.o_life.util.UserUtils;
 
 public class ChangeNameActivity extends ToolBarBaseActivity {
 
@@ -31,7 +30,7 @@ public class ChangeNameActivity extends ToolBarBaseActivity {
                 String name = etNmae.getEditableText().toString().trim();
                 User user = new User();
                 user.setUsername(name);
-                user.setId(BmobUser.getCurrentUser(User.class).getId());
+                user.setId(UserUtils.currentUser().getId());
                 new UserBizImpl().updateUser(user, new UserBiz.UserDoingLisenter() {
                     @Override
                     public void onStart() {

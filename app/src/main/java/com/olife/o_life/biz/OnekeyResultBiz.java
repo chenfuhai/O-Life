@@ -4,8 +4,6 @@ import com.olife.o_life.entity.OnekeyResultRecord;
 
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
 /**
  * 一键检测的结果记录 查询 增加 等
  * Created by chenfuhai on 2016/12/16 0016.

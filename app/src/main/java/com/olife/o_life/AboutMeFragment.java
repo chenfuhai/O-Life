@@ -8,22 +8,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.olife.o_life.entity.Feedback;
 import com.olife.o_life.entity.User;
+import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.StatusBarUtils;
-
-import cn.bmob.v3.BmobUser;
-
-import static cn.bmob.v3.Bmob.getApplicationContext;
+import com.olife.o_life.util.UserUtils;
 
 /**
  * 关于我的页面的Fragment版
@@ -49,7 +48,7 @@ public class AboutMeFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BmobUser.getCurrentUser(User.class) == null) {
+                if (UserUtils.currentUser() == null) {
                     startActivity(new Intent(getActivity(), LoginSMSActivity.class));
                 } else {
                     startActivity(new Intent(getActivity(), AboutmeHistoryActivity.class));
@@ -61,7 +60,7 @@ public class AboutMeFragment extends Fragment {
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BmobUser.getCurrentUser(User.class) == null) {
+                if (UserUtils.currentUser() == null) {
                     startActivity(new Intent(getActivity(), LoginSMSActivity.class));
                 } else {
                     startActivity(new Intent(getActivity(), AboutmeSharedActivity.class));
@@ -73,7 +72,7 @@ public class AboutMeFragment extends Fragment {
         view2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BmobUser.getCurrentUser(User.class) == null) {
+                if (UserUtils.currentUser() == null) {
                     startActivity(new Intent(getActivity(), LoginSMSActivity.class));
                 } else {
                     startActivity(new Intent(getActivity(), AboutmeDiscussActivity.class));
@@ -103,7 +102,7 @@ public class AboutMeFragment extends Fragment {
     private void initUserInfo() {
 
         View view = mView.findViewById(R.id.about_me_userinfo);
-        if (BmobUser.getCurrentUser() == null) {
+        if (UserUtils.currentUser() == null) {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -124,7 +123,7 @@ public class AboutMeFragment extends Fragment {
         TextView tvname = (TextView) mView.findViewById(R.id.aboutme_username);
         TextView tvphone = (TextView) mView.findViewById(R.id.aboutme_userphone);
 
-        User user = BmobUser.getCurrentUser(User.class);
+        User user = UserUtils.currentUser();
         if (user != null) {
             String userimgUrl = user.getImgUrl();
             String name = user.getUsername();
@@ -145,8 +144,8 @@ public class AboutMeFragment extends Fragment {
                         .cacheOnDisk(true)
                         .bitmapConfig(Bitmap.Config.RGB_565)
                         .build();
-                ImageLoader.getInstance().displayImage(userimgUrl, ivimg, options);
-
+                ImageLoader.getInstance().displayImage(NetConfig.PreUrl+userimgUrl, ivimg, options);
+                Log.i("fuhai", "com.olife.o_life>>AboutMeFragment>>initUserInfo: "+NetConfig.PreUrl+userimgUrl);
             } else {
                 ivimg.setImageResource(R.drawable.test_icon);
             }
@@ -203,6 +202,6 @@ public class AboutMeFragment extends Fragment {
         super.onResume();
         initUserInfo();
         StatusBarUtils.setWindowStatusBarColor(getActivity(),
-                ContextCompat.getColor(getApplicationContext(), R.color.bg_blue_deep), false);
+                ContextCompat.getColor(MyApplication.getContext(), R.color.bg_blue_deep), false);
     }
 }

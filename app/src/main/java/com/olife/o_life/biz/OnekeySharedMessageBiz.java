@@ -4,8 +4,6 @@ import com.olife.o_life.entity.OnekeySharedMessage;
 
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
 /**
  * 周边空气分享BIZ 分享的上传 下载 依据时间 距离当前位置多少 下载附近的分享 根据用户的ID下载用户自己的分享
  * Created by chenfuhai on 2016/12/16 0016.

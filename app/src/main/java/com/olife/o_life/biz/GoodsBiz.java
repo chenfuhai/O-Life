@@ -4,8 +4,6 @@ import com.olife.o_life.entity.Goods;
 
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
 /**
  * Created by wuguofei on 2016/12/26.
  */

@@ -15,10 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.bmob.v3.BmobSMS;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
-
 /**
  * 忘记密码用手机找回的第一步的acitivty
  */
@@ -88,28 +84,29 @@ public class ForgetPassByPhoneActivity extends ToolBarBaseActivity {
             @Override
             public void onClick(View v) {
 
-                String phone = tvPhone.getEditableText().toString().trim();
-                if (!phone.isEmpty()) {
-                    btnGetCode.setEnabled(false);
-
-                    BmobSMS.requestSMSCode(phone, "fuhai", new QueryListener<Integer>() {
-                        @Override
-                        public void done(Integer smsid, BmobException e) {
-                            if (e == null) {
-                                Toast.makeText(ForgetPassByPhoneActivity.this, "验证码已发送，请注意查收", Toast.LENGTH_LONG).show();
-                                mSmsId = smsid;
-                                handler.sendEmptyMessage(0);
-
-
-                            } else {
-                                //BmobError.showErrorMessage(getApplicationContext(), e);
-                                btnGetCode.setEnabled(true);
-                            }
-                        }
-                    });
-                } else {
-                    Toast.makeText(ForgetPassByPhoneActivity.this, "请填写手机号", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(getApplicationContext(),"暂不支持敬请期待",Toast.LENGTH_SHORT).show();
+//                String phone = tvPhone.getEditableText().toString().trim();
+//                if (!phone.isEmpty()) {
+//                    btnGetCode.setEnabled(false);
+//
+//                    BmobSMS.requestSMSCode(phone, "fuhai", new QueryListener<Integer>() {
+//                        @Override
+//                        public void done(Integer smsid, BmobException e) {
+//                            if (e == null) {
+//                                Toast.makeText(ForgetPassByPhoneActivity.this, "验证码已发送，请注意查收", Toast.LENGTH_LONG).show();
+//                                mSmsId = smsid;
+//                                handler.sendEmptyMessage(0);
+//
+//
+//                            } else {
+//                                //BmobError.showErrorMessage(getApplicationContext(), e);
+//                                btnGetCode.setEnabled(true);
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    Toast.makeText(ForgetPassByPhoneActivity.this, "请填写手机号", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

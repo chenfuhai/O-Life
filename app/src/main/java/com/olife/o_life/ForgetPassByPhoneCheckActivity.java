@@ -11,10 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UpdateListener;
-
 /**
  * 忘记密码用手机找回的第二步的activity
  */
@@ -44,24 +40,25 @@ public class ForgetPassByPhoneCheckActivity extends ToolBarBaseActivity {
         findViewById(R.id.btnComfirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               String pwd = etPwd.getEditableText().toString().trim();
-                String pwdR = etRepeatPwd.getEditableText().toString().trim();
-                if (!pwd.equals(pwdR)){
-                    Toast.makeText(ForgetPassByPhoneCheckActivity.this, "两次输入的密码不一样,请检查", Toast.LENGTH_SHORT).show();
-                }else {
-                    BmobUser.resetPasswordBySMSCode(mCode,pwd, new UpdateListener() {
-
-                        @Override
-                        public void done(BmobException ex) {
-                            if(ex==null){
-                                Toast.makeText(ForgetPassByPhoneCheckActivity.this, "密码重置成功,请牢记您的密码", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }else{
-                                //BmobError.showErrorMessage(getApplicationContext(),ex);
-                            }
-                        }
-                    });
-                }
+                Toast.makeText(ForgetPassByPhoneCheckActivity.this, "暂不支持敬请期待", Toast.LENGTH_SHORT).show();
+//               String pwd = etPwd.getEditableText().toString().trim();
+//                String pwdR = etRepeatPwd.getEditableText().toString().trim();
+//                if (!pwd.equals(pwdR)){
+//                    Toast.makeText(ForgetPassByPhoneCheckActivity.this, "两次输入的密码不一样,请检查", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    BmobUser.resetPasswordBySMSCode(mCode,pwd, new UpdateListener() {
+//
+//                        @Override
+//                        public void done(BmobException ex) {
+//                            if(ex==null){
+//                                Toast.makeText(ForgetPassByPhoneCheckActivity.this, "密码重置成功,请牢记您的密码", Toast.LENGTH_SHORT).show();
+//                                finish();
+//                            }else{
+//                                //BmobError.showErrorMessage(getApplicationContext(),ex);
+//                            }
+//                        }
+//                    });
+//                }
             }
         });
 

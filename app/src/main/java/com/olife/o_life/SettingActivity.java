@@ -14,13 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.olife.o_life.util.DataCleanManager;
+import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.BmobUpdateListener;
-import cn.bmob.v3.update.BmobUpdateAgent;
-import cn.bmob.v3.update.UpdateResponse;
-import cn.bmob.v3.update.UpdateStatus;
 
 /**
  * 设置页面
@@ -130,17 +125,18 @@ public class SettingActivity extends ToolBarBaseActivity implements View.OnClick
                 //具体操作
                 mLoadingDialog.setMessage("检查更新中");
                 mLoadingDialog.show();
-                BmobUpdateAgent.setUpdateListener(new UpdateListener());
-                BmobUpdateAgent.forceUpdate(SettingActivity.this);
+                //BmobUpdateAgent.setUpdateListener(new UpdateListener());
+                //BmobUpdateAgent.forceUpdate(SettingActivity.this);
 
             }
             break;
             case R.id.btn_logout: {
                 //具体操作
-                if (BmobUser.getCurrentUser()==null){
+                if (UserUtils.currentUser()==null){
                     Toast.makeText(this, "您未登录！", Toast.LENGTH_SHORT).show();
                 }else {
-                    BmobUser.logOut();
+                    //BmobUser.logOut();
+                    UserUtils.removeCurrentUser();
                     Toast.makeText(this, "您已成功推出登录", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -152,29 +148,29 @@ public class SettingActivity extends ToolBarBaseActivity implements View.OnClick
         }
     }
 
-    private class UpdateListener implements BmobUpdateListener {
-
-        @Override
-        public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
-            if (updateStatus == UpdateStatus.Yes) {
-                //版本有更新
-
-
-            } else if (updateStatus == UpdateStatus.No) {
-                Toast.makeText(SettingActivity.this, "版本无更新", Toast.LENGTH_SHORT).show();
-            } else if (updateStatus == UpdateStatus.EmptyField) {//此提示只是提醒开发者关注那些必填项，测试成功后，无需对用户提示
-                Toast.makeText(SettingActivity.this, "请检查你AppVersion表的必填项，1、target_size（文件大小）是否填写；2、path或者android_url两者必填其中一项。", Toast.LENGTH_SHORT).show();
-            } else if (updateStatus == UpdateStatus.IGNORED) {
-                Toast.makeText(SettingActivity.this, "该版本已被忽略更新", Toast.LENGTH_SHORT).show();
-            } else if (updateStatus == UpdateStatus.ErrorSizeFormat) {
-                Toast.makeText(SettingActivity.this, "请检查target_size填写的格式，请使用file.length()方法获取apk大小。", Toast.LENGTH_SHORT).show();
-            } else if (updateStatus == UpdateStatus.TimeOut) {
-                Toast.makeText(SettingActivity.this, "查询出错或查询超时", Toast.LENGTH_SHORT).show();
-            }
-
-            mLoadingDialog.dismiss();
-        }
-
-    }
+//    private class UpdateListener implements BmobUpdateListener {
+//
+//        @Override
+//        public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
+//            if (updateStatus == UpdateStatus.Yes) {
+//                //版本有更新
+//
+//
+//            } else if (updateStatus == UpdateStatus.No) {
+//                Toast.makeText(SettingActivity.this, "版本无更新", Toast.LENGTH_SHORT).show();
+//            } else if (updateStatus == UpdateStatus.EmptyField) {//此提示只是提醒开发者关注那些必填项，测试成功后，无需对用户提示
+//                Toast.makeText(SettingActivity.this, "请检查你AppVersion表的必填项，1、target_size（文件大小）是否填写；2、path或者android_url两者必填其中一项。", Toast.LENGTH_SHORT).show();
+//            } else if (updateStatus == UpdateStatus.IGNORED) {
+//                Toast.makeText(SettingActivity.this, "该版本已被忽略更新", Toast.LENGTH_SHORT).show();
+//            } else if (updateStatus == UpdateStatus.ErrorSizeFormat) {
+//                Toast.makeText(SettingActivity.this, "请检查target_size填写的格式，请使用file.length()方法获取apk大小。", Toast.LENGTH_SHORT).show();
+//            } else if (updateStatus == UpdateStatus.TimeOut) {
+//                Toast.makeText(SettingActivity.this, "查询出错或查询超时", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            mLoadingDialog.dismiss();
+//        }
+//
+//    }
 
 }

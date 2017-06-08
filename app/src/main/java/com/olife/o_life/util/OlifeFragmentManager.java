@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
-
-import static cn.bmob.newim.db.dao.MessageDao$Properties.Content;
 
 /**
  * Created by chenfuhai on 2016/12/12 0012.

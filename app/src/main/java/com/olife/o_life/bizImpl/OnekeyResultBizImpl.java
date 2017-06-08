@@ -2,7 +2,6 @@ package com.olife.o_life.bizImpl;
 
 import android.util.Log;
 
-import com.amap.api.services.route.RouteSearch;
 import com.olife.o_life.biz.OnekeyResultBiz;
 import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.util.GsonGetter;
@@ -11,14 +10,6 @@ import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
-
-import static com.loc.c.e;
 
 /**
  * Created by chenfuhai on 2016/12/16 0016.
@@ -132,6 +123,7 @@ public class OnekeyResultBizImpl implements OnekeyResultBiz {
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
+                        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeyResultBizImpl>>onSuccessResponse: "+result);
                         ArrayList<OnekeyResultRecord> list = GsonGetter.getInstance().getGson().fromJson(result, ArrayList.class);
                         if (list.size() != 0) {
                             lisenter.onSuccess(list.get(0));

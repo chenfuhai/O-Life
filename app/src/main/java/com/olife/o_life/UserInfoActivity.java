@@ -24,14 +24,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.bizImpl.UserBizImpl;
 import com.olife.o_life.entity.User;
+import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.SDcardTools;
 import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
 import com.olife.o_life.view.SelectPicturePopupWindow;
 
 import java.io.File;
-
-import cn.bmob.v3.BmobUser;
 
 /**
  * 用户详细信息页面
@@ -194,12 +193,12 @@ public class UserInfoActivity extends ToolBarBaseActivity {
      * 获取个人信息并更新界面
      */
     private void initUserData() {
-        User cu = BmobUser.getCurrentUser(User.class);
+        User cu = UserUtils.currentUser();
         mUsername.setText(cu.getUsername());
         if (cu.getImgUrl() == null) {
             mHead.setImageResource(R.drawable.test_icon);
         } else {
-            ImageLoader.getInstance().displayImage(cu.getImgUrl(), mHead);
+            ImageLoader.getInstance().displayImage(NetConfig.PreUrl+cu.getImgUrl(), mHead);
         }
         if (cu.getSex() != null) {
             mSexGroup.setOnCheckedChangeListener(null);
@@ -253,7 +252,7 @@ public class UserInfoActivity extends ToolBarBaseActivity {
 
                     headBitmap = analysisIntent(data);
 
-                    final User user = BmobUser.getCurrentUser(User.class);
+                    final User user = UserUtils.currentUser();
                     userBiz.updateUserHead(user, headBitmap, new UserBiz.UserDoingLisenter() {
                         @Override
                         public void onStart() {

@@ -1,7 +1,5 @@
 package com.olife.o_life.entity;
 
-import cn.bmob.v3.BmobObject;
-
 /**
  * 检测记录类 一旦检测完成 就会把结果总结 上传到后台服务器 只支持基本的格式bmob 记录也要加地理位置
  * 然后分享的时候的地理位置的获取就是获取这个地理位置里面的信息

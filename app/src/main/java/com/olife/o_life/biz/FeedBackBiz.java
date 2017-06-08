@@ -1,11 +1,8 @@
 package com.olife.o_life.biz;
 
 import com.olife.o_life.entity.Feedback;
-import com.olife.o_life.entity.OnekeyResultRecord;
 
 import java.util.List;
-
-import cn.bmob.v3.exception.BmobException;
 
 /**
  * 反馈意见处理Biz

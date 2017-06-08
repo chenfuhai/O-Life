@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.olife.o_life.R;
 import com.olife.o_life.entity.OnekeySharedDisc;
-import com.olife.o_life.entity.User;
+import com.olife.o_life.util.UserUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
-
-import cn.bmob.v3.BmobUser;
 
 /**
  * 周边空气的评论adapter
@@ -76,7 +74,7 @@ public class DiscoveryDiscussAdapter extends RecyclerView.Adapter<DiscoveryDiscu
             @Override
             public void run() {
                 //根据表中图片的url地址来得到图片（Bitmap类型）
-                final Bitmap bitmap = getPicture(BmobUser.getCurrentUser(User.class).getImgUrl());
+                final Bitmap bitmap = getPicture(UserUtils.currentUser().getImgUrl());
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

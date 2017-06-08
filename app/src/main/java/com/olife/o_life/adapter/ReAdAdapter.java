@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.olife.o_life.R;
 
 /**
@@ -30,6 +31,7 @@ public class ReAdAdapter extends LoopPagerAdapter {
     @Override
     public View getView(ViewGroup container, int position) {
         ImageView view = new ImageView(container.getContext());
+
         view.setImageResource(imgs[position]);
         view.setScaleType(ImageView.ScaleType.CENTER_CROP);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

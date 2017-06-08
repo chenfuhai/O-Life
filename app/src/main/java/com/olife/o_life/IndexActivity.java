@@ -10,8 +10,6 @@ import com.olife.o_life.util.StatusBarUtils;
 
 import java.util.ArrayList;
 
-import cn.bmob.v3.update.BmobUpdateAgent;
-
 /**
  * 首页Activity
  */
@@ -23,9 +21,9 @@ public class IndexActivity extends ToolBarBaseActivity {
         super.onCreate(savedInstanceState);
 
         //自动检查更新
-        BmobUpdateAgent.update(this);
+        //BmobUpdateAgent.update(this);
         //有WIFI 自动下载
-        BmobUpdateAgent.silentUpdate(this);
+        //BmobUpdateAgent.silentUpdate(this);
 
         AboutMeFragment aboutmeFragment = new AboutMeFragment();
         final OneKeyCheckFragment oneKeyFragment = new OneKeyCheckFragment();

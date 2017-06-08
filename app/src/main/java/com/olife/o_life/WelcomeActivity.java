@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import cn.bmob.v3.update.BmobUpdateAgent;
-
-import static android.os.Build.VERSION_CODES.M;
 import static java.lang.Thread.sleep;
 
 /**

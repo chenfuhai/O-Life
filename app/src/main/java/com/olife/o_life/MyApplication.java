@@ -8,9 +8,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.olife.o_life.util.SDcardTools;
 
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.update.BmobUpdateAgent;
-
 /**
  * 初始化需要的组件 应用启动最先启动的类
  * Created by chenfuhai on 2016/12/9 0009.
@@ -24,7 +21,7 @@ public class MyApplication extends Application {
 
         context = getApplicationContext();
         SDcardTools.initialize(getApplicationContext());
-        Bmob.initialize(getApplicationContext(), "3cdd8038837f44e97d8fdd566184b979");
+        //Bmob.initialize(getApplicationContext(), "3cdd8038837f44e97d8fdd566184b979");
 
         //创建默认的ImageLoader配置参数
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration
@@ -39,4 +36,7 @@ public class MyApplication extends Application {
     public static Context getContext(){
         return context;
     }
+
+
+
 }

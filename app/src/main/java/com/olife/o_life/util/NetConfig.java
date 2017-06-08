@@ -5,7 +5,7 @@ package com.olife.o_life.util;
  *
  */
 public class NetConfig {
-	public static String IP="http://10.100.1.82";
+	public static String IP="http://10.100.2.43";
 	public static String PORT="1433";
 	public static String DateBaseName="olife";
 	public static String USERNAME="sa";
@@ -13,28 +13,29 @@ public class NetConfig {
 	public static String HTTPPORT="8080";
 	public static String ProjectName = "olifeManager";
 
-	public static String PreImgUrl = IP+":"+HTTPPORT+"/"+ProjectName;
-	//--------------------ACTION-----------------------------
-	public static String TestAction = IP+":"+HTTPPORT+"/onmyoji/test.action";
-	public static String SaveFeedBackAction = "";
-	public static String FindAllFeedBackAction = "";
-	public static String FindAllGoodsAction = "";
-	public static String SaveonekeyResultRecordAction = "";
-	public static String findOnkeyResultByUserIdAction = "";
-	public static String findLastOnkeyResultByUserIdAction = "";
-	public static String reportDiscussionAction = "";
-	public static String findMessageAllDiscussions = "";
-	public static String findUserAllDiscussionsAction = "";
-	public static String deleteDiscussionAction = "";
-	public static String findOnkeySharedByUserIdAction="";
-	public static String shareUserResultAction = "";
-	public static String findOthersSharedByLatLngAction="";
-	public static String UploadUserImgAction="";
-	public static String UpdateUserAction="";
+	public static String PreUrl = IP+":"+HTTPPORT+"/"+ProjectName;
 
-	public static String ChangeUserPwdAction="";
-	public static String UserLoginAction = "";
-	public static String UserSignUpAction = "";
+    //--------------------ACTION-----------------------------
+	public static String TestAction = IP+":"+HTTPPORT+"/onmyoji/test.action";
+	public static String SaveFeedBackAction = PreUrl+"/FeedBack_submitAction.action";
+	public static String FindAllFeedBackAction = PreUrl+"/FeedBack_queryAction.action";
+	public static String FindAllGoodsAction =PreUrl+ "/Goods_queryAction.action";
+	public static String SaveonekeyResultRecordAction = PreUrl+"/TestResult_saveAction.action";
+	public static String findOnkeyResultByUserIdAction = PreUrl+"/TestResult_queryByIdAction.action";
+	public static String findLastOnkeyResultByUserIdAction =PreUrl+ "/TestLastResult_queryByIdAction.action";
+	public static String reportDiscussionAction = PreUrl+"/Comment_submitAction.action";
+	public static String findMessageAllDiscussions = PreUrl+"/Comment_queryAction.action";
+	public static String findUserAllDiscussionsAction =PreUrl+ "/Comment_queryAction.action";
+	public static String deleteDiscussionAction = PreUrl+"/Comment_deleteAction.action";
+	public static String findOnkeySharedByUserIdAction=PreUrl+"/ShareMessage_queryByIdAction.action";
+	public static String shareUserResultAction = PreUrl+"/ShareMessage_saveAction.action";
+	public static String findOthersSharedByLatLngAction=PreUrl+"/ShareMessage_queryByLaInAction.action";
+	public static String UploadUserImgAction=PreUrl+"/UserHead_updateAction.action";
+	public static String UpdateUserAction=PreUrl+"/User_updateAction.action";
+
+	public static String ChangeUserPwdAction=PreUrl+"/User_changePwdAction.action";
+	public static String UserLoginAction = PreUrl+"/User_loginByPwdAction.action";
+	public static String UserSignUpAction = PreUrl+"/User_resisterByPwdAction.action";
 	//--------------------TableName-----------------
 
 	public static String UserTableName="ouser";

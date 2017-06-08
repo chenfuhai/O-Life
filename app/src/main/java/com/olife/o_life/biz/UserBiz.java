@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 
 import com.olife.o_life.entity.User;
 
-import cn.bmob.v3.exception.BmobException;
-
 /**
  *
  * Created by chenfuhai on 2016/12/9 0009.

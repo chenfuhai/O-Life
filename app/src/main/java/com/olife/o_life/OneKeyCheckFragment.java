@@ -29,7 +29,6 @@ import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
 import com.olife.o_life.entity.OnekeyResultLocal;
 import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedMessage;
-import com.olife.o_life.entity.User;
 import com.olife.o_life.util.LocationUtils;
 import com.olife.o_life.util.StatusBarUtils;
 import com.olife.o_life.util.UserUtils;
@@ -39,10 +38,7 @@ import com.olife.pointview.PointViewFull;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobUser;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
-
-import static cn.bmob.v3.Bmob.getApplicationContext;
 
 /**
  * 一件检测的fragment版本
@@ -94,7 +90,7 @@ public class OneKeyCheckFragment extends Fragment {
                 pointView.waitingStop();
 
                 final OnekeyResultRecord resultRecord = new OnekeyResultRecord(59, UserUtils.currentUser().getId()+"");
-                LocationUtils.getmLocationUtil(getApplicationContext()).startLocation(new LocationUtils.LocationDoingLisenter() {
+                LocationUtils.getmLocationUtil(MyApplication.getContext()).startLocation(new LocationUtils.LocationDoingLisenter() {
                     @Override
                     public void onStart() {
 
@@ -127,7 +123,7 @@ public class OneKeyCheckFragment extends Fragment {
 
                             @Override
                             public void onSuccess() {
-                                Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MyApplication.getContext(), "保存成功", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -186,7 +182,7 @@ public class OneKeyCheckFragment extends Fragment {
 
     private void initViewPager() {
         mViewPager = (ViewPager) mView.findViewById(R.id.one_key_viewpager);
-        View itemInfo = View.inflate(getApplicationContext(), R.layout.item_viewpager_onekeycheck_info, null);
+        View itemInfo = View.inflate(MyApplication.getContext(), R.layout.item_viewpager_onekeycheck_info, null);
         View itemAnalysis = View.inflate(getActivity(), R.layout.item_viewpager_onekeycheck_analysis, null);
 
 
@@ -196,7 +192,7 @@ public class OneKeyCheckFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         SlideInDownAnimator animator = new SlideInDownAnimator(new OvershootInterpolator(0f));
         recyclerView.setItemAnimator(animator);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(MyApplication.getContext(), DividerItemDecoration.VERTICAL));
 
         mAdapter = new OneKeyRecyclerAdapter(null);
 
@@ -207,7 +203,7 @@ public class OneKeyCheckFragment extends Fragment {
         btnShared.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BmobUser.getCurrentUser(User.class) == null) {
+                if (UserUtils.currentUser() == null) {
                     startActivity(new Intent(getActivity(), LoginSMSActivity.class));
                 } else {
                     //分享
@@ -235,7 +231,7 @@ public class OneKeyCheckFragment extends Fragment {
         final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
 
         //获取最后一次检测数据
-        new OnekeyResultBizImpl().findLastOnkeyResultByUserId(BmobUser.getCurrentUser().getObjectId(),
+        new OnekeyResultBizImpl().findLastOnkeyResultByUserId(UserUtils.currentUser().getId()+"",
                 new OnekeyResultBiz.FindLastDoingLisenter() {
                     @Override
                     public void onStart() {
@@ -245,10 +241,10 @@ public class OneKeyCheckFragment extends Fragment {
                     @Override
                     public void onSuccess(final OnekeyResultRecord record) {
                         if (record == null) {
-                            Toast.makeText(getApplicationContext(), "您还未检测，请检测后分享您的数据", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyApplication.getContext(), "您还未检测，请检测后分享您的数据", Toast.LENGTH_SHORT).show();
                         } else {
                             //开始定位
-                            LocationUtils.getmLocationUtil(getApplicationContext()).startLocation(new LocationUtils.LocationDoingLisenter() {
+                            LocationUtils.getmLocationUtil(MyApplication.getContext()).startLocation(new LocationUtils.LocationDoingLisenter() {
                                 @Override
                                 public void onStart() {
 
@@ -294,7 +290,7 @@ public class OneKeyCheckFragment extends Fragment {
                                         @Override
                                         public void onSuccess() {
                                             //保存成功 即发布成功
-                                            Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MyApplication.getContext(), "分享成功", Toast.LENGTH_SHORT).show();
                                         }
 
                                         @Override
@@ -306,12 +302,12 @@ public class OneKeyCheckFragment extends Fragment {
 
                                 @Override
                                 public void onFailed() {
-                                    Toast.makeText(getApplicationContext(), "定位失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyApplication.getContext(), "定位失败", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override
                                 public void onError(LocationUtils.LocationDoingError e) {
-                                    Toast.makeText(getApplicationContext(), "定位失败" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyApplication.getContext(), "定位失败" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

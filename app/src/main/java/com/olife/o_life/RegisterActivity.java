@@ -29,15 +29,6 @@ import com.olife.o_life.view.SelectPicturePopupWindow;
 import com.olife.o_life.view.WaitingDialog;
 
 import java.io.File;
-import java.util.ArrayList;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.LogInListener;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
-import cn.bmob.v3.listener.UploadFileListener;
 
 
 /**
@@ -167,74 +158,92 @@ public class RegisterActivity extends ToolBarBaseActivity {
      * 更新用户信息 把头像的URL添加到用户类中 并上传
      */
 
-    private void updateUser(final BmobFile headFile) {
+    private void updateUser(final String headFileUrl, final User user) {
         //上传头像文件成功 更新用户信息 把头像文件的Url添加到用户信息中 错误206 登录的用户才能修改自己的信息 需要利用用户名密码登录一次
-        BmobUser.loginByAccount(name, pass, new LogInListener<User>() {
-            @Override
-            public void done(final User user, BmobException e) {
-                user.setImgUrl(headFile.getFileUrl());
-                HttpUtils.getInstance().postwithJSON(NetConfig.UpdateUserAction,
-                        GsonGetter.getInstance().getGson().toJson(user),
-                        new HttpUtils.SuccessListener() {
-                            @Override
-                            public void onSuccessResponse(String result) {
-                                Log.i("fuhai", "done: addUserHeadUrlSuccess" + user.getUsername());
-                                wait.dismiss();
-                                Toast.makeText(RegisterActivity.this, "注册成功，欢迎 " + user.getUsername(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(RegisterActivity.this, "已向您的邮箱发送验证邮件，请及时验证邮箱", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                finish();
-                            }
-                        }, new HttpUtils.FailedListener() {
-                            @Override
-                            public void onFialed(int connectCode) {
-                                //Log.i("fuhai", "done: addUserHeadUrlFailed" + e.getMessage() + e.getErrorCode());
-                                wait.dismiss();
-                            }
-                        });
+        //TODO
 
-//                user.update(new UpdateListener() {
-//                    @Override
-//                    public void done(BmobException e) {
-//                        if (e == null) {
-//                            Log.i("fuhai", "done: addUserHeadUrlSuccess" + user.getUsername());
-//                            wait.dismiss();
-//                            Toast.makeText(RegisterActivity.this, "注册成功，欢迎 " + user.getUsername(), Toast.LENGTH_SHORT).show();
-//                            Toast.makeText(RegisterActivity.this, "已向您的邮箱发送验证邮件，请及时验证邮箱", Toast.LENGTH_LONG).show();
-//                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-//                            finish();
-//                        } else {
-//                            Log.i("fuhai", "done: addUserHeadUrlFailed" + e.getMessage() + e.getErrorCode());
-//                            wait.dismiss();
-//                            //BmobError.showErrorMessage(getApplicationContext(), e);
-//                        }
-//                    }
-//                });
-            }
-        });
+        user.setImgUrl(headFileUrl);
+        HttpUtils.getInstance().postwithJSON(NetConfig.UpdateUserAction,
+                GsonGetter.getInstance().getGson().toJson(user),
+                new HttpUtils.SuccessListener() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        Log.i("fuhai", "done: addUserHeadUrlSuccess" + user.getUsername());
+                        wait.dismiss();
+                        Toast.makeText(RegisterActivity.this, "注册成功，欢迎 " + user.getUsername(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "已向您的邮箱发送验证邮件，请及时验证邮箱", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }, new HttpUtils.FailedListener() {
+                    @Override
+                    public void onFialed(int connectCode) {
+                        //Log.i("fuhai", "done: addUserHeadUrlFailed" + e.getMessage() + e.getErrorCode());
+                        wait.dismiss();
+                    }
+                });
+
+
+//        BmobUser.loginByAccount(name, pass, new LogInListener<User>() {
+//            @Override
+//            public void done(final User user, BmobException e) {
+//
+//
+////                user.update(new UpdateListener() {
+////                    @Override
+////                    public void done(BmobException e) {
+////                        if (e == null) {
+////                            Log.i("fuhai", "done: addUserHeadUrlSuccess" + user.getUsername());
+////                            wait.dismiss();
+////                            Toast.makeText(RegisterActivity.this, "注册成功，欢迎 " + user.getUsername(), Toast.LENGTH_SHORT).show();
+////                            Toast.makeText(RegisterActivity.this, "已向您的邮箱发送验证邮件，请及时验证邮箱", Toast.LENGTH_LONG).show();
+////                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+////                            finish();
+////                        } else {
+////                            Log.i("fuhai", "done: addUserHeadUrlFailed" + e.getMessage() + e.getErrorCode());
+////                            wait.dismiss();
+////                            //BmobError.showErrorMessage(getApplicationContext(), e);
+////                        }
+////                    }
+////                });
+//            }
+//        });
     }
 
     /**
      * 上传头像
      */
-    private void uploadHead(User user) {
+    private void uploadHead(final User user) {
         //注册成功的情况下保存头像文件
         SDcardTools.savaUserHead(headBitmap, user.getUsername());
         //上传头像文件
-        final BmobFile headFile = new BmobFile(SDcardTools.getUserHeadForFile(user.getUsername()));
-        headFile.uploadblock(new UploadFileListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null) {
-                    //头像上传成功 得到URL 填入用户类中 并更新用户类
-                    updateUser(headFile);
-                } else {
-                    Log.i("fuhai", "done: headFile uoload failed " + e.getMessage() + e.getErrorCode());
-                    wait.dismiss();
-                   // BmobError.showErrorMessage(getApplicationContext(), e);
-                }
-            }
-        });
+
+        File headFile = SDcardTools.getUserHeadForFile(user.getUsername());
+        HttpUtils.getInstance().postwithFile(NetConfig.UploadUserImgAction, "img", headFile,
+                null, new HttpUtils.SuccessListener() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        updateUser(result,user);
+                    }
+                }, new HttpUtils.FailedListener() {
+                    @Override
+                    public void onFialed(int connectCode) {
+                        wait.dismiss();
+                    }
+                });
+//        headFile.uploadblock(new UploadFileListener() {
+//            @Override
+//            public void done(BmobException e) {
+//                if (e == null) {
+//                    //头像上传成功 得到URL 填入用户类中 并更新用户类
+//                    updateUser(headFile);
+//                } else {
+//                    Log.i("fuhai", "done: headFile uoload failed " + e.getMessage() + e.getErrorCode());
+//                    wait.dismiss();
+//                   // BmobError.showErrorMessage(getApplicationContext(), e);
+//                }
+//            }
+//        });
 
     }
 
@@ -253,8 +262,17 @@ public class RegisterActivity extends ToolBarBaseActivity {
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        User user = GsonGetter.getInstance().getGson().fromJson(result,User.class);
-                        uploadHead(user);
+                        if(result.equals("failed")){
+                           wait.dismiss();
+                            Toast.makeText(RegisterActivity.this, "注册失败 可能已存在用户", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                                User user = GsonGetter.getInstance().getGson().fromJson(result,User.class);
+                                uploadHead(user);
+
+
+                        }
+
                     }
                 }, new HttpUtils.FailedListener() {
                     @Override

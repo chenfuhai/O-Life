@@ -8,11 +8,6 @@ import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by wuguofei on 2016/12/26.

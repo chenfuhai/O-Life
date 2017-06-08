@@ -1,7 +1,5 @@
 package com.olife.o_life.entity;
 
-import cn.bmob.v3.BmobObject;
-
 /**
  * 一键检测结果分享类 包含用户的位置信息 检测的结果信息 用户的信息等
  * Created by chenfuhai on 2016/12/16 0016.

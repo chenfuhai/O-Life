@@ -20,16 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.olife.o_life.entity.User;
+import com.olife.o_life.util.GsonGetter;
+import com.olife.o_life.util.HttpUtils;
+import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.SDcardTools;
+import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.WaitingDialog;
 
-import java.io.File;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.DownloadFileListener;
-import cn.bmob.v3.listener.LogInListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -107,22 +104,47 @@ public class LoginActivity extends ToolBarBaseActivity {
     private void login(String account, String pass) {
 
         wait.show();
-        BmobUser.loginByAccount(account, pass, new LogInListener<User>() {
-            @Override
-            public void done(User user, BmobException e) {
-                if (e == null) {
-                    Toast.makeText(LoginActivity.this, "登录成功，欢迎回来 " + user.getUsername(), Toast.LENGTH_LONG).show();
-                    //下载并保存用户头像
-                    wait.dismiss();
-                    dwUserHead(user);
-                    finish();
-                } else {
-                    wait.dismiss();
-                    //BmobError.showErrorMessage(getApplication(), e);
-                    Log.i("fuhai", "done: login failed" + e.getMessage() + e.getErrorCode());
-                }
-            }
-        });
+        User user= new User();
+        user.setUsername(account);
+        user.setPassword(pass);
+        HttpUtils.getInstance().postwithJSON(NetConfig.UserLoginAction,
+                GsonGetter.getInstance().getGson().toJson(user),
+                new HttpUtils.SuccessListener() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        User user = GsonGetter.getInstance().getGson().fromJson(result,User.class);
+
+                        Log.i("fuhai", "com.olife.o_life>>LoginActivity>>onSuccessResponse: ");
+                        Toast.makeText(LoginActivity.this, "登录成功，欢迎回来 " + user.getUsername(), Toast.LENGTH_LONG).show();
+                        //下载并保存用户头像
+                        wait.dismiss();
+                        //保存下当前登录的用户信息
+                        UserUtils.saveCurrentUser(user);
+                        dwUserHead(user);
+                        finish();
+                    }
+                }, new HttpUtils.FailedListener() {
+                    @Override
+                    public void onFialed(int connectCode) {
+                        wait.dismiss();
+                    }
+                });
+//        BmobUser.loginByAccount(account, pass, new LogInListener<User>() {
+//            @Override
+//            public void done(User user, BmobException e) {
+//                if (e == null) {
+//                    Toast.makeText(LoginActivity.this, "登录成功，欢迎回来 " + user.getUsername(), Toast.LENGTH_LONG).show();
+//                    //下载并保存用户头像
+//                    wait.dismiss();
+//                    dwUserHead(user);
+//                    finish();
+//                } else {
+//                    wait.dismiss();
+//                    //BmobError.showErrorMessage(getApplication(), e);
+//                    Log.i("fuhai", "done: login failed" + e.getMessage() + e.getErrorCode());
+//                }
+//            }
+//        });
     }
 
 
@@ -132,27 +154,28 @@ public class LoginActivity extends ToolBarBaseActivity {
      */
     private void dwUserHead(User user) {
 
-        if (!user.getImgUrl().isEmpty()) {
-            String fileName = "user" + user.getUsername() + ".png";
-            BmobFile bmobFile = new BmobFile(fileName, "", user.getImgUrl());
-            bmobFile.download(new File(SDcardTools.getPATH(), bmobFile.getFilename()), new DownloadFileListener() {
-                @Override
-                public void done(String s, BmobException e) {
-                    if (e == null) {
-                    } else {
-                        Log.i("fuhai", "done: dwheadFileFailed " + e.getMessage() + e.getErrorCode());
-                        //BmobError.showErrorMessage(getApplicationContext(), e);
-                    }
 
-
-                }
-
-                @Override
-                public void onProgress(Integer integer, long l) {
-
-                }
-            });
-        }
+//        if (!user.getImgUrl().isEmpty()) {
+//            String fileName = "user" + user.getUsername() + ".png";
+//            BmobFile bmobFile = new BmobFile(fileName, "", user.getImgUrl());
+//            bmobFile.download(new File(SDcardTools.getPATH(), bmobFile.getFilename()), new DownloadFileListener() {
+//                @Override
+//                public void done(String s, BmobException e) {
+//                    if (e == null) {
+//                    } else {
+//                        Log.i("fuhai", "done: dwheadFileFailed " + e.getMessage() + e.getErrorCode());
+//                        //BmobError.showErrorMessage(getApplicationContext(), e);
+//                    }
+//
+//
+//                }
+//
+//                @Override
+//                public void onProgress(Integer integer, long l) {
+//
+//                }
+//            });
+//        }
 
     }
 

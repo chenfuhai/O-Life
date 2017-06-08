@@ -4,8 +4,6 @@ import com.olife.o_life.entity.OnekeySharedDisc;
 
 import java.util.List;
 
-import cn.bmob.v3.exception.BmobException;
-
 /**
  * 周边空气用户评论 根据位置下载用户评论 增加用户评论到某一个分享 根据用户的ID查询用户所有的评论
  * Created by chenfuhai on 2016/12/16 0016.

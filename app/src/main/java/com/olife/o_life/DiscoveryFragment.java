@@ -47,7 +47,6 @@ import com.olife.o_life.bizImpl.OnekeySharedDiscussionBizImpl;
 import com.olife.o_life.bizImpl.OnekeySharedMessageBizImpl;
 import com.olife.o_life.entity.OnekeySharedDisc;
 import com.olife.o_life.entity.OnekeySharedMessage;
-import com.olife.o_life.entity.User;
 import com.olife.o_life.util.StatusBarUtils;
 import com.olife.o_life.util.UserUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
@@ -55,10 +54,6 @@ import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import cn.bmob.v3.BmobUser;
-
-import static cn.bmob.v3.Bmob.getApplicationContext;
 
 //import static com.olife.o_life.R.id.map_discuss_lv;
 
@@ -180,7 +175,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，实现地图生命周期管理
         mMapView.onCreate(savedInstanceState);
         //初始化定位
-        mLocationClient = new AMapLocationClient(getApplicationContext());
+        mLocationClient = new AMapLocationClient(MyApplication.getContext());
         //设置定位回调监听
         mLocationClient.setLocationListener(mLocationListener);
         //初始化
@@ -439,7 +434,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
         super.onResume();
         mMapView.onResume();
         StatusBarUtils.setWindowStatusBarColor(getActivity(),
-                ContextCompat.getColor(getApplicationContext(), R.color.bg_blue_deep),false);
+                ContextCompat.getColor(MyApplication.getContext(), R.color.bg_blue_deep),false);
     }
 
     @Override
@@ -483,7 +478,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
                         marker(message.getLat(),message.getLng(),message.getResultMark(),message);
                     }
                 }else{
-                    Toast.makeText(getApplicationContext(), "其他分享不存在", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApplication.getContext(), "其他分享不存在", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -580,7 +575,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
                 //获得用户id
                 discussion.setUserId(UserUtils.currentUser().getId()+"");
                 discussion.setUsersex(true);
-                discussion.setUserImgUrl(BmobUser.getCurrentUser(User.class).getImgUrl());
+                discussion.setUserImgUrl(UserUtils.currentUser().getImgUrl());
 
 
                 new OnekeySharedDiscussionBizImpl().reportDiscussion(discussion, new OnekeySharedDiscussionBiz.DiscussionDoingLisenter() {

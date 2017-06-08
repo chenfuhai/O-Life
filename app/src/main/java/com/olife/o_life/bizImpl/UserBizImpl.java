@@ -1,7 +1,6 @@
 package com.olife.o_life.bizImpl;
 
 import android.graphics.Bitmap;
-import android.provider.Settings;
 
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.entity.User;
@@ -13,15 +12,6 @@ import com.olife.o_life.util.UserPwdChange;
 import com.olife.o_life.util.UserUtils;
 
 import java.io.File;
-
-import cn.bmob.v3.BmobSMS;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.LogInListener;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.UpdateListener;
-import cn.bmob.v3.listener.UploadFileListener;
 
 /**
  * Created by chenfuhai on 2016/12/15 0015.
@@ -152,7 +142,7 @@ public class UserBizImpl implements UserBiz {
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        lisenter.onSuccess();;
+                        lisenter.onSuccess();
                     }
                 }, new HttpUtils.FailedListener() {
                     @Override

@@ -1,7 +1,5 @@
 package com.olife.o_life.entity;
 
-import cn.bmob.v3.BmobObject;
-
 /**
  * 评论类
  * Created by chenfuhai on 2016/12/16 0016.

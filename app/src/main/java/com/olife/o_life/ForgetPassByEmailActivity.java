@@ -11,11 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * 忘记密码用邮箱找回的activity
@@ -33,28 +28,28 @@ public class ForgetPassByEmailActivity extends ToolBarBaseActivity {
 
 
         final Button btnComfirm = (Button) findViewById(R.id.btnComfirm);
-        btnComfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (tvEmail.getText().toString().trim().isEmpty()){
-                    Toast.makeText(ForgetPassByEmailActivity.this, "输入为空，请检查", Toast.LENGTH_SHORT).show();
-                }else {
-                    btnComfirm.setEnabled(false);
-                    BmobUser.resetPasswordByEmail(tvEmail.getText().toString().trim(), new UpdateListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null){
-                                btnComfirm.setEnabled(false);
-                                tvMessage.setText("已向您的邮箱 "+tvEmail.getText().toString().trim()+"发送重置密码邮件\n请在网页端完成密码重置");
-                            }else{
-                                btnComfirm.setEnabled(true);
-                                //BmobError.showErrorMessage(getApplicationContext(),e);
-                            }
-                        }
-                    });
-                }
-            }
-        });
+//        btnComfirm.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                if (tvEmail.getText().toString().trim().isEmpty()){
+////                    Toast.makeText(ForgetPassByEmailActivity.this, "输入为空，请检查", Toast.LENGTH_SHORT).show();
+////                }else {
+////                    btnComfirm.setEnabled(false);
+//                    BmobUser.resetPasswordByEmail(tvEmail.getText().toString().trim(), new UpdateListener() {
+//                        @Override
+//                        public void done(BmobException e) {
+//                            if (e == null){
+//                                btnComfirm.setEnabled(false);
+//                                tvMessage.setText("已向您的邮箱 "+tvEmail.getText().toString().trim()+"发送重置密码邮件\n请在网页端完成密码重置");
+//                            }else{
+//                                btnComfirm.setEnabled(true);
+//                                //BmobError.showErrorMessage(getApplicationContext(),e);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
 
     }
 

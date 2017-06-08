@@ -21,21 +21,21 @@ public class UserUtils {
     private static String SPNAME = UserUtils.class.getName();
     private static int MODE = Context.MODE_PRIVATE;
     private static String ID = "userId";
-    private static String URL = "userId";
-    private static String SEX = "userId";
-    private static String AGE = "userId";
-    private static String BRITHDAY = "userId";
-    private static String NAME = "userId";
-    private static String EMAIL = "userId";
-    private static String PHONE = "userId";
-    private static String PASS = "userId";
-    private static String PHOVE = "userId";
-    private static String EMAILVE = "userId";
+    private static String URL = "url";
+    private static String SEX = "sex";
+    private static String AGE = "age";
+    private static String BRITHDAY = "brithday";
+    private static String NAME = "name";
+    private static String EMAIL = "email";
+    private static String PHONE = "phone";
+    private static String PASS = "pass";
+    private static String PHOVE = "phove";
+    private static String EMAILVE = "emailve";
 
 
     public static User currentUser() {
         SharedPreferences sharedPreferences = MyApplication.getContext().getSharedPreferences(SPNAME, MODE);
-        int id = sharedPreferences.getInt(ID, -1);
+        int id =sharedPreferences.getInt(ID, -1);
         String url = sharedPreferences.getString(URL, "");
         String sex = sharedPreferences.getString(SEX, "");
         String age = sharedPreferences.getString(AGE, "");

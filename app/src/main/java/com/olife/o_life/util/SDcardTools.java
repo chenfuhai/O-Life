@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 /***
  * 将用户的头像保存在sdcard 要先初始化
@@ -76,7 +77,7 @@ public class SDcardTools {
      * @return
      */
     public static File getUserHeadForFile(String username) {
-        username = "user" + username + ".png";
+        username ="user" + username + ".png";
         File file = getFile(username);
         return file;
     }

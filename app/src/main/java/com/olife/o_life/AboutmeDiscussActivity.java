@@ -26,8 +26,6 @@ import com.olife.o_life.util.UserUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobUser;
-
 public class AboutmeDiscussActivity extends ToolBarBaseActivity {
 
     /**
@@ -87,7 +85,7 @@ public class AboutmeDiscussActivity extends ToolBarBaseActivity {
     private void requestData() {
         if (NetworkUtils.isNetAvailable(getApplicationContext())) {
             //网络可用
-            //User user = BmobUser.getCurrentUser(User.class);
+            //User user = UserUtils.currentUser();
             User user = UserUtils.currentUser();
             if (user != null) {
                 discussionBiz.findUserAllDiscussions(user.getId()+"", REQUEST_COUNT, mCurrentCounter, new OnekeySharedDiscussionBiz.FindDiscussionsLisenter() {
