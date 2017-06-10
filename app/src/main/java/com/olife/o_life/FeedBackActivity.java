@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.olife.o_life.biz.FeedBackBiz;
 import com.olife.o_life.bizImpl.FeedBackBizImpl;
 import com.olife.o_life.entity.Feedback;
+import com.olife.o_life.entity.User;
 import com.olife.o_life.util.UserUtils;
 import com.olife.o_life.view.LoadingDialog;
 
@@ -55,7 +56,11 @@ public class FeedBackActivity extends ToolBarBaseActivity {
                     dialog.show();
                     Feedback feedback = new Feedback( message);
                     if (UserUtils.currentUser()!=null){
-                        feedback.setUserId(UserUtils.currentUser().getId()+"");
+                        User user = UserUtils.currentUser();
+                        feedback.setUserId(user.getId()+"");
+                        feedback.setUserName(user.getUsername());
+                        feedback.setUserAge(user.getAge());
+                        feedback.setUserSex(user.getSex());
                     }
                     if (!etQQ.getEditableText().toString().trim().isEmpty()){
                         feedback.setQQ(etQQ.getEditableText().toString().trim());

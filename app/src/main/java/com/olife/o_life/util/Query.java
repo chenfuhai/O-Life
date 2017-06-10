@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public class Query {
 
-    private Integer limit;
+    private int limit;
     private String order;
     private String[] whereEqualTo;
-    private Integer skip;
+    private int skip;
     private ArrayList<String[]> WhereLessThanOrEqualTo;
     private ArrayList<String[]> WhereGreaterThanOrEqualTo;
 
@@ -76,7 +76,7 @@ public class Query {
     public String toString() {
         return "Query{" +
 
-                ", limit=" + limit +
+                "limit=" + limit +
                 ", order='" + order + '\'' +
                 ", whereEqualTo='" + whereEqualTo + '\'' +
                 ", skip=" + skip +

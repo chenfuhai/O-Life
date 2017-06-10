@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -120,8 +121,8 @@ public class UserInfoActivity extends ToolBarBaseActivity {
                 new DatePickerDialog(UserInfoActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
-                        User user = new User();
-                        user.setId(UserUtils.currentUser().getId());
+                        User user = UserUtils.currentUser();
+
                         user.setBrithday(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
                         userBiz.updateUser(user, new UserBiz.UserDoingLisenter() {
                             @Override
@@ -198,7 +199,9 @@ public class UserInfoActivity extends ToolBarBaseActivity {
         if (cu.getImgUrl() == null) {
             mHead.setImageResource(R.drawable.test_icon);
         } else {
+
             ImageLoader.getInstance().displayImage(NetConfig.PreUrl+cu.getImgUrl(), mHead);
+
         }
         if (cu.getSex() != null) {
             mSexGroup.setOnCheckedChangeListener(null);
@@ -325,8 +328,8 @@ public class UserInfoActivity extends ToolBarBaseActivity {
 
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int i) {
-            User user = new User();
-            user.setId(UserUtils.currentUser().getId());
+            User user = UserUtils.currentUser();
+
             switch (i) {
                 case R.id.userInfo_radio_sexMan:
                     user.setSex("true");

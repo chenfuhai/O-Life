@@ -1,6 +1,10 @@
 package com.olife.o_life.bizImpl;
 
+import android.util.Log;
+
+import com.google.gson.reflect.TypeToken;
 import com.olife.o_life.biz.OnekeySharedMessageBiz;
+import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedMessage;
 import com.olife.o_life.util.GsonGetter;
 import com.olife.o_life.util.HttpUtils;
@@ -8,6 +12,7 @@ import com.olife.o_life.util.LagLngUtils;
 import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -45,14 +50,15 @@ public class OnekeySharedMessageBizImpl implements OnekeySharedMessageBiz {
     }
 
     @Override
-    public void findOthersSharedByLatLng(double lat, double lng, final FindSharedDoingLisenter lisenter) {
+    public void findOthersSharedByLatLng(final double lat, double lng, final FindSharedDoingLisenter lisenter) {
         lisenter.onStart();
 
         //距离中心1500米
         long radius = 1500;
-
+        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>findOthersSharedByLatLng: 123");
         LagLngUtils.Result result = LagLngUtils.getSquare(lat,lng,radius);
 
+        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>findOthersSharedByLatLng: 123");
 //        BmobQuery<OnekeySharedMessage> eq1 = new BmobQuery<>();
 //        eq1.addWhereLessThanOrEqualTo("lat", result.getMaxLat());//纬度<=最大纬度
 //
@@ -86,20 +92,23 @@ public class OnekeySharedMessageBizImpl implements OnekeySharedMessageBiz {
 //        });
         Query query = new Query();
         ArrayList<String[]> arrayList = new ArrayList<>();
-        arrayList.add(new String[]{"lat",result.getMaxLat()+""});
+
+        arrayList.add(new String[]{"ing",result.getMinLng()+""});
         arrayList.add(new String[]{"lat",result.getMinLat()+""});
         query.setWhereGreaterThanOrEqualTo(arrayList);
         ArrayList<String[]> arrayList2 = new ArrayList<>();
-        arrayList2.add(new String[]{"lng",result.getMaxLng()+""});
-        arrayList2.add(new String[]{"lng",result.getMinLng()+""});
+        arrayList2.add(new String[]{"ing",result.getMaxLng()+""});
+        arrayList2.add(new String[]{"lat",result.getMaxLat()+""});
         query.setWhereLessThanOrEqualTo(arrayList2);
-
+        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>findOthersSharedByLatLng: "+ GsonGetter.getInstance().getGson().toJson(query));
         HttpUtils.getInstance().postwithJSON(NetConfig.findOthersSharedByLatLngAction,
                 GsonGetter.getInstance().getGson().toJson(query), new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<OnekeySharedMessage> list = GsonGetter.getInstance().getGson().fromJson(result,ArrayList.class);
+                        Type type = new TypeToken<ArrayList<OnekeySharedMessage>>() {}.getType();
+                        ArrayList<OnekeySharedMessage> list = GsonGetter.getInstance().getGson().fromJson(result,type);
                         lisenter.onSuccess(list);
+
                     }
                 }, new HttpUtils.FailedListener() {
                     @Override
@@ -134,7 +143,11 @@ public class OnekeySharedMessageBizImpl implements OnekeySharedMessageBiz {
                 GsonGetter.getInstance().getGson().toJson(query), new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<OnekeySharedMessage> list = GsonGetter.getInstance().getGson().fromJson(result,ArrayList.class);
+                        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>onSuccessResponse: "+result);
+
+                        Type type = new TypeToken<ArrayList<OnekeySharedMessage>>() {}.getType();
+                        ArrayList<OnekeySharedMessage> list = GsonGetter.getInstance().getGson().fromJson(result,type);
+                        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>onSuccessResponse: "+list.size()+list.toString());
                         lisenter.onSuccess(list);
                     }
                 }, new HttpUtils.FailedListener() {

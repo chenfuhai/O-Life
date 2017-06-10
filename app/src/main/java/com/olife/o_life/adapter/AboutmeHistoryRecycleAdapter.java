@@ -1,6 +1,7 @@
 package com.olife.o_life.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,7 @@ public class AboutmeHistoryRecycleAdapter extends RecyclerView.Adapter<AboutmeHi
 
     @Override
     public void onBindViewHolder(AboutmeHistoryRecycleAdapter.MainAdapterHolder holder, int position) {
+        Log.i("fuhai", "com.olife.o_life.adapter>>AboutmeHistoryRecycleAdapter>>onBindViewHolder: "+arrayList.get(position).getResultMark());
         OnekeyResultRecord resultRecord = arrayList.get(position);
 
         holder.tvMark.setText(resultRecord.getResultMark().toString());

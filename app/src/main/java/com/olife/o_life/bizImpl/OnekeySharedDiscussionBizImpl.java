@@ -1,6 +1,11 @@
 package com.olife.o_life.bizImpl;
 
+import android.util.Log;
+
+import com.google.gson.reflect.TypeToken;
 import com.olife.o_life.biz.OnekeySharedDiscussionBiz;
+import com.olife.o_life.entity.Goods;
+import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedDisc;
 import com.olife.o_life.util.Delete;
 import com.olife.o_life.util.GsonGetter;
@@ -8,6 +13,7 @@ import com.olife.o_life.util.HttpUtils;
 import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -64,6 +70,7 @@ public class OnekeySharedDiscussionBizImpl implements OnekeySharedDiscussionBiz 
 //        });
         Query query = new Query();
         query.setWhereEqualTo(new String[]{"sharedMessageId",messageId});
+
         query.setLimit(limit);
         query.setSkip(skip);
         query.setOrder("-id");
@@ -72,7 +79,9 @@ public class OnekeySharedDiscussionBizImpl implements OnekeySharedDiscussionBiz 
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<OnekeySharedDisc> list = GsonGetter.getInstance().getGson().fromJson(result,ArrayList.class);
+                        Type type = new TypeToken<ArrayList<OnekeySharedDisc>>(){}.getType();
+                        ArrayList<OnekeySharedDisc> list = GsonGetter.getInstance().getGson().fromJson(result,type);
+
                         lisenter.onSuccess(list);
                     }
                 }, new HttpUtils.FailedListener() {
@@ -111,7 +120,8 @@ public class OnekeySharedDiscussionBizImpl implements OnekeySharedDiscussionBiz 
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<OnekeySharedDisc> list = GsonGetter.getInstance().getGson().fromJson(result,ArrayList.class);
+                        Type type = new TypeToken<ArrayList<OnekeySharedDisc>>() {}.getType();
+                        ArrayList<OnekeySharedDisc> list = GsonGetter.getInstance().getGson().fromJson(result,type);
                         lisenter.onSuccess(list);
                     }
                 }, new HttpUtils.FailedListener() {

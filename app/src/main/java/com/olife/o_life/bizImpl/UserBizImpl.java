@@ -1,6 +1,7 @@
 package com.olife.o_life.bizImpl;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.olife.o_life.biz.UserBiz;
 import com.olife.o_life.entity.User;
@@ -57,18 +58,22 @@ public class UserBizImpl implements UserBiz {
 //            }
 //        });
         File headFile = SDcardTools.getUserHeadForFile(user.getUsername());
+
         HttpUtils.getInstance().postwithFile(NetConfig.UploadUserImgAction, "img", headFile, null, new HttpUtils.SuccessListener() {
             @Override
             public void onSuccessResponse(String result) {
-                //头像上传成功 得到URL 填入用户类中 并更新用户类
-                User user = UserUtils.currentUser();
+                //头像上传成功 得到URL 填入用户类中 并更新用户类 同时本地的当前用户类也要更新
+                final User user = UserUtils.currentUser();
                 user.setImgUrl(result);
+
                 HttpUtils.getInstance().postwithJSON(NetConfig.UpdateUserAction,
                         GsonGetter.getInstance().getGson().toJson(user),
                         new HttpUtils.SuccessListener() {
                             @Override
                             public void onSuccessResponse(String result) {
                                 lisenter.onSuccess();
+                                //云端更新成功以后 更新本地的用户类
+                                UserUtils.saveCurrentUser(user);
                             }
                         }, new HttpUtils.FailedListener() {
                             @Override
@@ -88,7 +93,7 @@ public class UserBizImpl implements UserBiz {
 
 
     @Override
-    public void updateUser(User user, final UserDoingLisenter lisenter) {
+    public void updateUser(final User user, final UserDoingLisenter lisenter) {
         lisenter.onStart();
 
 //        user.update(new UpdateListener() {
@@ -107,6 +112,9 @@ public class UserBizImpl implements UserBiz {
                     @Override
                     public void onSuccessResponse(String result) {
                         lisenter.onSuccess();
+                        //云端成功以后 本地的也要改
+                        UserUtils.saveCurrentUser(user);
+                        Log.i("fuhai", "com.olife.o_life.bizImpl>>UserBizImpl>>onSuccessResponse: "+user.toString());
                     }
                 }, new HttpUtils.FailedListener() {
                     @Override

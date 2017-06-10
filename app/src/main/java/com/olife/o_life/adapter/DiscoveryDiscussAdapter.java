@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.olife.o_life.R;
 import com.olife.o_life.entity.OnekeySharedDisc;
+import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.UserUtils;
 
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class DiscoveryDiscussAdapter extends RecyclerView.Adapter<DiscoveryDiscu
     }
 
     public DiscoveryDiscussAdapter(List<OnekeySharedDisc> datas, Context context) {
+
         this.datas = datas;
         this.context = context;
     }
@@ -68,13 +71,15 @@ public class DiscoveryDiscussAdapter extends RecyclerView.Adapter<DiscoveryDiscu
     //绑定数据
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.name.setText(datas.get(position).getUsername());
+
         holder.content.setText(datas.get(position).getMessage());
         holder.time.setText(datas.get(position).getTime());
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //根据表中图片的url地址来得到图片（Bitmap类型）
-                final Bitmap bitmap = getPicture(UserUtils.currentUser().getImgUrl());
+                final Bitmap bitmap = getPicture(NetConfig.PreUrl+UserUtils.currentUser().getImgUrl());
+                Log.i("fuhai", "com.olife.o_life.adapter>>DiscoveryDiscussAdapter>>run: "+NetConfig.PreUrl+UserUtils.currentUser().getImgUrl());
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

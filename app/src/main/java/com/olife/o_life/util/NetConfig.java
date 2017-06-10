@@ -5,7 +5,7 @@ package com.olife.o_life.util;
  *
  */
 public class NetConfig {
-	public static String IP="http://10.100.2.43";
+	public static String IP="http://10.100.2.61";
 	public static String PORT="1433";
 	public static String DateBaseName="olife";
 	public static String USERNAME="sa";

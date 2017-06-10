@@ -267,18 +267,18 @@ public class OneKeyCheckFragment extends Fragment {
                                     sharedMessage.setBen(10);
                                     sharedMessage.setPm2_5(50);
                                     sharedMessage.setResultMark(88);
-                                    sharedMessage.setSuggest("科学建议");
+                                    sharedMessage.setSuggest(null);
                                     sharedMessage.setProvince("省份");
                                     sharedMessage.setCity("城市");
                                     sharedMessage.setDistrict("地区");
                                     sharedMessage.setStreet("街道");
                                     sharedMessage.setStreetNum("街道门牌号");
-                                    sharedMessage.setUsername("用户姓名");
-                                    sharedMessage.setUserage("20");
-                                    sharedMessage.setUserImgUrl("头像的URL地址");
-                                    sharedMessage.setUserphone("13247808200");
-                                    sharedMessage.setUsersex("男");
-                                    sharedMessage.setUseremail("email");
+                                    sharedMessage.setUsername(UserUtils.currentUser().getUsername());
+                                    sharedMessage.setUserage(UserUtils.currentUser().getAge());
+                                    sharedMessage.setUserImgUrl(UserUtils.currentUser().getImgUrl());
+                                    sharedMessage.setUserphone(UserUtils.currentUser().getPhone());
+                                    sharedMessage.setUsersex(UserUtils.currentUser().getSex());
+                                    sharedMessage.setUseremail(UserUtils.currentUser().getEmail());
                                     sharedMessage.setDriverId("设备编号");
 
                                     new OnekeySharedMessageBizImpl().shareUserResult(sharedMessage, new OnekeySharedMessageBiz.DiscoverDoingLisenter() {

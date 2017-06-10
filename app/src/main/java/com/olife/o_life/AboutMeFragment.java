@@ -136,8 +136,9 @@ public class AboutMeFragment extends Fragment {
                 tvphone.setText("未有联系信息");
             }
 
+            Log.i("fuhai", "com.olife.o_life>>AboutMeFragment>>initUserInfo: "+userimgUrl);
             if (userimgUrl != null) {
-                //显示图片的配置
+                //显示图片的配置+
                 DisplayImageOptions options = new DisplayImageOptions.Builder()
                         .showImageOnLoading(R.drawable.test_icon)
                         .cacheInMemory(true)
@@ -145,7 +146,7 @@ public class AboutMeFragment extends Fragment {
                         .bitmapConfig(Bitmap.Config.RGB_565)
                         .build();
                 ImageLoader.getInstance().displayImage(NetConfig.PreUrl+userimgUrl, ivimg, options);
-                Log.i("fuhai", "com.olife.o_life>>AboutMeFragment>>initUserInfo: "+NetConfig.PreUrl+userimgUrl);
+
             } else {
                 ivimg.setImageResource(R.drawable.test_icon);
             }

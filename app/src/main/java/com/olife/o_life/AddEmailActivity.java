@@ -29,8 +29,8 @@ public class AddEmailActivity extends ToolBarBaseActivity {
             @Override
             public void onClick(View view) {
                 String email = etemail.getEditableText().toString().trim();
-                User user = new User();
-                user.setId(UserUtils.currentUser().getId());
+                User user = UserUtils.currentUser();
+
                 user.setEmail(email);
                 new UserBizImpl().updateUser(user, new UserBiz.UserDoingLisenter() {
                     @Override

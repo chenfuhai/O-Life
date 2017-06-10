@@ -2,13 +2,17 @@ package com.olife.o_life.bizImpl;
 
 import android.util.Log;
 
+import com.amap.api.maps.offlinemap.City;
+import com.google.gson.reflect.TypeToken;
 import com.olife.o_life.biz.OnekeyResultBiz;
 import com.olife.o_life.entity.OnekeyResultRecord;
+import com.olife.o_life.entity.OnekeySharedMessage;
 import com.olife.o_life.util.GsonGetter;
 import com.olife.o_life.util.HttpUtils;
 import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -76,7 +80,8 @@ public class OnekeyResultBizImpl implements OnekeyResultBiz {
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<OnekeyResultRecord> list = GsonGetter.getInstance().getGson().fromJson(result, ArrayList.class);
+                        Type type = new TypeToken<ArrayList<OnekeyResultRecord>>(){}.getType();
+                        ArrayList<OnekeyResultRecord> list = GsonGetter.getInstance().getGson().fromJson(result, type);
                         lisenter.onSuccess(list);
                     }
                 }, new HttpUtils.FailedListener() {
@@ -116,22 +121,28 @@ public class OnekeyResultBizImpl implements OnekeyResultBiz {
         Query query = new Query();
         query.setOrder("-id");
         query.setLimit(1);
-        query.setWhereEqualTo(new String[]{"userId",userId});
+        query.setWhereEqualTo(new String[]{"userid",userId});
 
+        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeyResultBizImpl>>findLastOnkeyResultByUserId: "+query.toString());
+        Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeyResultBizImpl>>findLastOnkeyResultByUserId: "+GsonGetter.getInstance().getGson().toJson(query));
         HttpUtils.getInstance().postwithJSON(NetConfig.findLastOnkeyResultByUserIdAction,
                 GsonGetter.getInstance().getGson().toJson(query),
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
                         Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeyResultBizImpl>>onSuccessResponse: "+result);
-                        ArrayList<OnekeyResultRecord> list = GsonGetter.getInstance().getGson().fromJson(result, ArrayList.class);
-                        if (list.size() != 0) {
-                            lisenter.onSuccess(list.get(0));
-                        } else {
-                            lisenter.onSuccess(null);
+                        if (result==null || result.equals("")){
+                            lisenter.onFailed(500);
+                        }else{
+                            Type type = new TypeToken<ArrayList<OnekeyResultRecord>>() {}.getType();
+                            ArrayList<OnekeyResultRecord> list = GsonGetter.getInstance().getGson().fromJson(result, type);
+                            Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeyResultBizImpl>>onSuccessResponse: "+list.get(0));
+                            if (list!=null && list.size() != 0) {
+                                lisenter.onSuccess(list.get(0));
+                            } else {
+                                lisenter.onSuccess(null);
+                            }
                         }
-
-
                     }
                 }, new HttpUtils.FailedListener() {
                     @Override

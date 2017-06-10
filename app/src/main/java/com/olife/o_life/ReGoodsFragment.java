@@ -164,6 +164,15 @@ public class ReGoodsFragment extends Fragment implements PullToRefreshView.OnHea
 
     @Override
     public void onHeaderRefresh(PullToRefreshView view) {
+        mPullToRefreshView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPullToRefreshView.onHeaderRefreshComplete();
+                loadmore();
+                Toast.makeText(getActivity(), "加载成功", Toast.LENGTH_SHORT).show();
+            }
+
+        }, 1000);
     }
 
     private void initToolBar() {

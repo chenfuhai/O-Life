@@ -31,7 +31,7 @@ public class AboutmeDiscussActivity extends ToolBarBaseActivity {
     /**
      * 每一页展示多少条数据
      */
-    private final int REQUEST_COUNT = 10;
+    private final int REQUEST_COUNT = 5;
     /**
      * 已经获取到多少条数据了 静态的变量不能随便乱设置 类存在就存在了
      */

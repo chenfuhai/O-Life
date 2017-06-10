@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.olife.o_life.R;
 import com.olife.o_life.entity.OnekeyResultRecord;
 import com.olife.o_life.entity.OnekeySharedDisc;
+import com.olife.o_life.util.NetConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +122,7 @@ public class AboutmeDiscussRecycleAdapter extends RecyclerView.Adapter<AboutmeDi
                     .cacheOnDisk(true)
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
-            ImageLoader.getInstance().displayImage(userimgUrl, holder.ivHead, options);
+            ImageLoader.getInstance().displayImage(NetConfig.PreUrl+userimgUrl, holder.ivHead, options);
         } else {
             holder.ivHead.setImageResource(R.drawable.test_icon);
         }

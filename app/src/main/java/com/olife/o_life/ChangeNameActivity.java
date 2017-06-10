@@ -28,9 +28,9 @@ public class ChangeNameActivity extends ToolBarBaseActivity {
             @Override
             public void onClick(View view) {
                 String name = etNmae.getEditableText().toString().trim();
-                User user = new User();
+                User user = UserUtils.currentUser();
                 user.setUsername(name);
-                user.setId(UserUtils.currentUser().getId());
+
                 new UserBizImpl().updateUser(user, new UserBiz.UserDoingLisenter() {
                     @Override
                     public void onStart() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
     /**
      * 每一页展示多少条数据
      */
-    private final int REQUEST_COUNT = 10;
+    private final int REQUEST_COUNT = 5;
     /**
      * 已经获取到多少条数据了 静态的变量不能随便乱设置 类存在就存在了
      */
@@ -51,7 +52,7 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
         initToolBar();
 
         onekeyResultBiz = new OnekeyResultBizImpl();
-
+        Log.i("fuhai", "com.olife.o_life>>AboutmeHistoryActivity>>onCreate: 11111111111111111111");
         arrayList = new ArrayList<>();
         mRecyclerView = (LRecyclerView) findViewById(R.id.list);
         adapter = new AboutmeHistoryRecycleAdapter(arrayList);
@@ -60,7 +61,7 @@ public class AboutmeHistoryActivity extends ToolBarBaseActivity {
         mRecyclerView.setPullRefreshEnabled(false);
         mRecyclerView.setLoadMoreEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        Log.i("fuhai", "com.olife.o_life>>AboutmeHistoryActivity>>onCreate: 11111111111111111133333333");
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {

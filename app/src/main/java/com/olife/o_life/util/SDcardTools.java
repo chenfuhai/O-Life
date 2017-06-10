@@ -15,6 +15,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+import static java.util.UUID.randomUUID;
+
 /***
  * 将用户的头像保存在sdcard 要先初始化
  */
@@ -39,7 +41,7 @@ public class SDcardTools {
      * @param username
      */
     public static void savaUserHead(Bitmap bitmap, String username) {
-        username = username + ".png";
+        username = username+ ".png";
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(CompressFormat.PNG, 100, outputStream);
 
@@ -77,8 +79,9 @@ public class SDcardTools {
      * @return
      */
     public static File getUserHeadForFile(String username) {
-        username ="user" + username + ".png";
+        username ="user"  +username+ ".png";
         File file = getFile(username);
+        Log.i("fuhai", "com.olife.o_life.util>>SDcardTools>>getUserHeadForFile: "+file.getName());
         return file;
     }
 
@@ -124,6 +127,7 @@ public class SDcardTools {
             path.mkdirs();
         }
         //对文件的操作
+
         File fileAllName = new File(path, fileName);
         return fileAllName;
     }

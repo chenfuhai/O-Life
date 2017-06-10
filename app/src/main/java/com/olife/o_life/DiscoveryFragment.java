@@ -55,6 +55,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import static com.amap.api.mapcore.util.af.a.n;
+
 //import static com.olife.o_life.R.id.map_discuss_lv;
 
 
@@ -101,6 +104,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
         @Override
         public void onLocationChanged(AMapLocation amapLocation) {
             if (amapLocation != null) {
+                Log.i("fuhai", "com.olife.o_life>>DiscoveryFragment>>onLocationChanged: "+amapLocation.getErrorCode());
                 if (amapLocation.getErrorCode() == 0) {
                     //定位成功回调信息，设置相关消息
                     amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
@@ -128,12 +132,14 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
                     aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 19));
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(new LatLng(lat, lon));
-                    markerOptions.title("当前位置");
+
                     markerOptions.visible(true);
                     markerOptions.draggable(true);
                     BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map_mark1));
                     markerOptions.icon(bitmapDescriptor);
+                    aMap.clear();
                     aMap.addMarker(markerOptions);
+
 
                 } else {
                     //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -207,6 +213,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onProviderEnabled(String provider) {
                 // 使用GPRS提供的定位信息来更新位置
+                Log.i("fuhai", "com.olife.o_life>>DiscoveryFragment>>getOtherShared: getOS2343");
                 if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -230,6 +237,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onLocationChanged(Location location) {
                 // TODO Auto-generated method stub
+
                 updatePosition(location);
             }
         });
@@ -336,6 +344,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             }
             @Override
             public void onSuccess(List<OnekeySharedDisc> discussions) {
+
                 discussAdapter = new DiscoveryDiscussAdapter(discussions, getActivity());
                 rv.setAdapter(discussAdapter);
 //                discussAdapter.setOnItemClickListener(new DiscoveryDiscussAdapter.OnRecycleViewtemClickListener() {
@@ -359,7 +368,9 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
 //                        dialog.show();
 //                    }
 //                });
-                Toast.makeText(getActivity(), "查询成功", Toast.LENGTH_SHORT).show();
+
+
+
             }
 
             @Override
@@ -451,6 +462,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
     }
 
     private void updatePosition(Location location) {
+
         //获取经纬度
         LatLng pos = new LatLng(location.getLatitude(), location.getLongitude());
         //创建一个设置经纬度的CameraUpdate
@@ -465,6 +477,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
     }
 
     private void getOtherShared(LatLng pos){
+
         new OnekeySharedMessageBizImpl().findOthersSharedByLatLng(pos.latitude, pos.longitude, new OnekeySharedMessageBiz.FindSharedDoingLisenter() {
             @Override
             public void onStart() {
@@ -475,6 +488,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
             public void onSuccess(List<OnekeySharedMessage> objects) {
                 if(objects != null){
                     for(OnekeySharedMessage message : objects){
+
                         marker(message.getLat(),message.getLng(),message.getResultMark(),message);
                     }
                 }else{
@@ -484,11 +498,12 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
 
             @Override
             public void onFailed(int e) {
+                Log.i("fuhai", "com.olife.o_life.bizImpl>>OnekeySharedMessageBizImpl>>findOthersSharedByLatLng: 123"+e);
                 //BmobError.showErrorMessage(getApplicationContext(),e);
             }
         });
     }
-    private void marker(final double a , final double b , int num,OnekeySharedMessage message) {
+    private void marker(final double a , final double b , int num, final OnekeySharedMessage message) {
         LatLng pos = new LatLng(a,b);
 
         //创建一个MarkerOptions对象
@@ -496,7 +511,7 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
         markOptions.position(pos);
         markOptions.draggable(true);
         markOptions.visible(true);
-        markOptions.title(pos + "");
+
         if(num>=90){
             markOptions.icon(
                     BitmapDescriptorFactory.fromBitmap(BitmapFactory
@@ -522,12 +537,17 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
         AMap.OnMarkerClickListener clickListener = new AMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker arg0) {
+
                 OnekeySharedMessage message = (OnekeySharedMessage) arg0.getObject();
+
                 Log.e("7",message.getId()+"");
                 c = message.getId()+"";
                 getdata();
-                tv_map_info.setText("地址：" + message.getProvince() + " "+message.getCity()+""+message.getDistrict()+""+message.getStreet()+""
-                +"\n"+"评分："+message.getResultMark()+"\n"+"建议："+message.getSuggest()+"");
+                String street = message.getStreet()==null?"未知街道":message.getStreet();
+                String streetNum = message.getStreetNum()==null?"":message.getStreetNum();
+                tv_map_info.setText( "地址："+street+streetNum+"\n"
+                        +"评分："+message.getResultMark()+"\n"
+                        +"建议："+message.getSuggest()+"");
 
                 return false;
             }
@@ -586,7 +606,8 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
 
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(getActivity(), "Send Successfully", Toast.LENGTH_SHORT).show();
+                        map_info_et.setText("");
+                        Toast.makeText(getActivity(), "评论已提交", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -613,10 +634,12 @@ public class DiscoveryFragment extends Fragment implements View.OnClickListener 
 
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
+
         }
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
+
         }
     }
 }

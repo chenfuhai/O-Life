@@ -1,5 +1,6 @@
 package com.olife.o_life.bizImpl;
 
+import com.google.gson.reflect.TypeToken;
 import com.olife.o_life.biz.FeedBackBiz;
 import com.olife.o_life.entity.Feedback;
 import com.olife.o_life.util.GsonGetter;
@@ -7,6 +8,7 @@ import com.olife.o_life.util.HttpUtils;
 import com.olife.o_life.util.NetConfig;
 import com.olife.o_life.util.Query;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -56,7 +58,8 @@ public class FeedBackBizImpl implements FeedBackBiz {
                 new HttpUtils.SuccessListener() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        ArrayList<Feedback> list = GsonGetter.getInstance().getGson().fromJson(result, ArrayList.class);
+                        Type type = new TypeToken<ArrayList<Feedback>>(){}.getType();
+                        ArrayList<Feedback> list = GsonGetter.getInstance().getGson().fromJson(result, type);
                         lisenter.onSuccess(list);
                     }
                 },

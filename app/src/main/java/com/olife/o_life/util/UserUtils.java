@@ -36,17 +36,17 @@ public class UserUtils {
     public static User currentUser() {
         SharedPreferences sharedPreferences = MyApplication.getContext().getSharedPreferences(SPNAME, MODE);
         int id =sharedPreferences.getInt(ID, -1);
-        String url = sharedPreferences.getString(URL, "");
-        String sex = sharedPreferences.getString(SEX, "");
-        String age = sharedPreferences.getString(AGE, "");
-        String email = sharedPreferences.getString(EMAIL, "");
-        String pass = sharedPreferences.getString(PASS, "");
-        String phone = sharedPreferences.getString(PHONE, "");
-        String emailve = sharedPreferences.getString(EMAILVE, "");
-        String phoneve = sharedPreferences.getString(PHOVE, "");
-        String brithday = sharedPreferences.getString(BRITHDAY, "");
-        String name = sharedPreferences.getString(NAME, "");
-        if (name.equals("") || id == -1) {
+        String url = sharedPreferences.getString(URL, null);
+        String sex = sharedPreferences.getString(SEX, null);
+        String age = sharedPreferences.getString(AGE, null);
+        String email = sharedPreferences.getString(EMAIL, null);
+        String pass = sharedPreferences.getString(PASS, null);
+        String phone = sharedPreferences.getString(PHONE, null);
+        String emailve = sharedPreferences.getString(EMAILVE, null);
+        String phoneve = sharedPreferences.getString(PHOVE, null);
+        String brithday = sharedPreferences.getString(BRITHDAY, null);
+        String name = sharedPreferences.getString(NAME, null);
+        if (name==null || id == -1) {
             return null;
         } else {
             User user = new User();
@@ -67,6 +67,7 @@ public class UserUtils {
 
 
     }
+
 
     /**
      * 登录过之后保存下 在登录成功后调用
